@@ -1,0 +1,30 @@
+/* Selectores
+Para hacer referencias a class en HTML se usa un punto (.)
+Para hacer referencia a un id se usa un gato (#) */
+
+.titulo {
+    color: yellow;
+    width: 320px;
+    height: 50px;
+    background-color: teal;
+}
+
+label {
+    /* Label es un display de tipo inline
+    No toma en cuenta los atributos width y height*/
+    background-color: tomato;
+    width: 310px;
+    height: 100px;
+}
+
+input {
+    background-color: aqua;
+    width: 310px;
+    height: 100px;
+}
+
+button{
+    background-color: blueviolet;
+    width: 310px;
+    height: 100px;
+}
