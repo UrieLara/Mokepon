@@ -42,7 +42,7 @@ function iniciarJuego(){
 function seleccionarMascotaPlayer(){
     
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-    sectionSeleccionarAtaque.style.display = 'block' //muestra la sección del HTML
+    sectionSeleccionarAtaque.style.display = 'flex' //muestra la sección del HTML
 
     let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none' //oculta la sección del HTML
@@ -127,30 +127,30 @@ function ataqueAleatorioEnemigo(){
 }
 
 function crearMensajes(resultado){
+    let sectionMensajes = document.getElementById("resultado")
+    let ataquesJugador = document.getElementById("ataques_jugador")
+    let ataquesEnemigo = document.getElementById("ataques_enemigo")
 
-    /*let parrafo = document.createElement('p') //'p' sirve para crear un párrafo. 
-    let contenido = document.createTextNode('Tu '+ mascotaJugador_msj +' atacó con '+ ataqueJugador+". "+ mascotaEnemigo_msj+' enemigo atacó con '+ataqueEnemigo+".")
-    parrafo.appendChild(contenido)
-    let seccionMensajes = document.getElementById('mensajes')
-    seccionMensajes.appendChild(parrafo)*/
+    let nuevoAtaqueDelJugador = document.createElement('p')
+    let nuevoAtaqueDelEnemigo = document.createElement('p')
 
-    let sectionMensajes = document.getElementById("mensajes")
+    sectionMensajes.innerHTML = resultado
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
 
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu '+ mascotaJugador_msj +' atacó con '+ ataqueJugador_msj+'. '+ mascotaEnemigo_msj+' enemigo atacó con '+ataqueEnemigo_msj+'. '+resultado
+    //let parrafo = document.createElement('p')
+    //parrafo.innerHTML = 'Tu '+ mascotaJugador_msj +' atacó con '+ ataqueJugador_msj+'. '+ mascotaEnemigo_msj+' enemigo atacó con '+ataqueEnemigo_msj+'. '+resultado
    
-    sectionMensajes.appendChild(parrafo)
+    ataquesJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 
 }
 
 function crearMensajeFinal(resultadoFinal){
 
-    let sectionMensajes = document.getElementById("mensajes")
+    let sectionMensajes = document.getElementById("resultado")
 
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'FIN DE LA PARTIDA. '+resultadoFinal
-   
-    sectionMensajes.appendChild(parrafo)
+    sectionMensajes.innerHTML = 'FIN DE LA PARTIDA. '+resultadoFinal
 
     let btnFuego = document.getElementById('btn_fuego')
     btnFuego.disabled = true
@@ -197,10 +197,10 @@ function revisarvidas(){
     // Si continuar = 1, sigue el juego. Si continuar = 0, se acaba el juego. 
 
     if(vidasJugador==0){
-        crearMensajeFinal('PERDISTE 😢😢😢')
+        crearMensajeFinal('PERDISTE 😢')
     }
     else if (vidasEnemigo==0) {
-        crearMensajeFinal('GANASTE!! 🥳🥳🥳')
+        crearMensajeFinal('GANASTE!! 🥳')
     }
    
 }

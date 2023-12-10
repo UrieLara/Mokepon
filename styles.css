@@ -2,10 +2,10 @@
 Para hacer referencias a class en HTML se usa un punto (.)
 Para hacer referencia a un id se usa un gato (#) */
 
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@500&display=swap');
 
 body{
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #071952;
 }
 
@@ -14,10 +14,10 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .titulo {
+    font-family: 'Lilita One', sans-serif;
     color: white;
     font-size: 40px;
 }
@@ -40,7 +40,6 @@ body{
     padding: 10px;
     box-sizing: border-box;
     margin: 10px;
-    border: 1px solid hotpink;
     border-radius: 20px;
     display: flex;
     color: white;
@@ -50,6 +49,54 @@ body{
 
 .tarjeta-de-mokepon img{
     width: 80px;
+}
+
+#btn_mascotas{
+    width: 180px;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+#seleccionar-ataque{
+flex-direction: column;
+align-items: center;
+
+}
+
+.boton-de-ataque{
+    background-color: #088395;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-color: transparent;
+    width: 120px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+#mensajes{
+    display: flex;
+    width: 280px;
+    background-color: #FFF0CE;
+    color: #071952;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+#btn_reiniciar{
+    border: none;
+    background-color: transparent;
+    color: #0174BE;
+
 }
 
 label {
@@ -65,17 +112,7 @@ input {
     background-color: aqua;
     width: 30px;
     height: 30px;
+    display: none;
 }
 
-button{
-    background-color: rgb(15, 194, 75);
-    width: 100px;
-    height: 50px;
-    padding: 10px;
-    border: 1px solid brown;
-}
-
-input{
-    display:none;
-}
 
