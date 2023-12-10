@@ -85,7 +85,7 @@ align-items: center;
     background-color: #FFF0CE;
     color: #071952;
     padding: 20px;
-    margin-top: 20px;
+    margin: 30px 0px 30px 0px;
     border-radius: 20px;
     flex-direction: column;
     align-items: center;
@@ -99,20 +99,13 @@ align-items: center;
 
 }
 
-label {
-    /* Label es un display de tipo inline
-    No toma en cuenta los atributos width y height*/
-    background-color: tomato;
-    width: 100px;
-    height: 100px;
+.ataques{
+    display:grid;
+    grid-template-columns: 100px 100px;
+    justify-items: center;
 }
 
 input {
-    /*radio*/
-    background-color: aqua;
-    width: 30px;
-    height: 30px;
+/*radio*/
     display: none;
 }
-
-
