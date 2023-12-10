@@ -2,29 +2,80 @@
 Para hacer referencias a class en HTML se usa un punto (.)
 Para hacer referencia a un id se usa un gato (#) */
 
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
+
+body{
+    font-family: 'Fredoka', sans-serif;
+    background-color: #071952;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .titulo {
-    color: yellow;
-    width: 320px;
-    height: 50px;
-    background-color: teal;
+    color: white;
+    font-size: 40px;
+}
+
+.subtitulo{
+ color: white;
+ font-size: 28px;
+}
+
+
+.tarjetas{
+    display: flex;
+    gap: 10px; /*espaciado*/
+}
+
+.tarjeta-de-mokepon{
+    width: 180px;
+    height:100px;
+    background: #088395;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px;
+    border: 1px solid hotpink;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarjeta-de-mokepon img{
+    width: 80px;
 }
 
 label {
     /* Label es un display de tipo inline
     No toma en cuenta los atributos width y height*/
     background-color: tomato;
-    width: 310px;
+    width: 100px;
     height: 100px;
 }
 
 input {
+    /*radio*/
     background-color: aqua;
-    width: 310px;
-    height: 100px;
+    width: 30px;
+    height: 30px;
 }
 
 button{
-    background-color: blueviolet;
-    width: 310px;
-    height: 100px;
+    background-color: rgb(15, 194, 75);
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid brown;
 }
+
+input{
+    display:none;
+}
+
