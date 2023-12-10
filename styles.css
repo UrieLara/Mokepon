@@ -7,6 +7,7 @@ Para hacer referencia a un id se usa un gato (#) */
 body{
     font-family: 'Poppins', sans-serif;
     background-color: #071952;
+    color: #FFF0CE;
 }
 
 #seleccionar-mascota {
@@ -19,12 +20,12 @@ body{
 .titulo {
     font-family: 'Lilita One', sans-serif;
     color: white;
-    font-size: 40px;
+    font-size: 32px;
 }
 
 .subtitulo{
  color: white;
- font-size: 28px;
+ font-size: 22px;
 }
 
 
@@ -103,9 +104,32 @@ align-items: center;
     display:grid;
     grid-template-columns: 100px 100px;
     justify-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.ataques img{
+    width: 80px;
+}
+
+#vida_jugador, #vida_enemigo{
+    font-size: 32px;
+    justify-content: center;
+    color: #FFC436;
 }
 
 input {
 /*radio*/
     display: none;
+}
+
+@media (max-width: 360px){
+    .tarjetas{
+        flex-direction: column;
+    }
+}
+
+p {
+    display: flex;
+    justify-content: center;
 }

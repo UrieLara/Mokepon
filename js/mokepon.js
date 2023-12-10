@@ -47,23 +47,27 @@ function seleccionarMascotaPlayer(){
     let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none' //oculta la sección del HTML
 
-    let radioHipodoge = document.getElementById('hipodoge')
-    let radioCapipepo = document.getElementById('capipepo')
-    let radioRatigueya = document.getElementById('ratigueya')
+    let inputHipodoge = document.getElementById('hipodoge')
+    let inputCapipepo = document.getElementById('capipepo')
+    let inputRatigueya = document.getElementById('ratigueya')
 
     let spanMascotaJugador = document.getElementById('mascota_jugador')
+    let imagenMokeponJugador= document.getElementById('img-mascota-jugador')
 
-    if(radioHipodoge.checked){
-        spanMascotaJugador.innerHTML= "Hipodoge" //innerHTML sirve para cambiar el contenido de las etiquetas "span"
+    if(inputHipodoge.checked){
+        spanMascotaJugador.innerHTML= "Hipodoge" 
         mascotaJugador_msj = "Hipodoge"
+        imagenMokeponJugador.src = "./assets/mokepons_mokepon_hipodoge_attack.png"
     }
-    else if(radioCapipepo.checked){
+    else if(inputCapipepo.checked){
         spanMascotaJugador.innerHTML= "Capipepo"
         mascotaJugador_msj = "Capipepo"
+        imagenMokeponJugador.src = "./assets/mokepons_mokepon_capipepo_attack.png"
     }
-    else if(radioRatigueya.checked){
+    else if(inputRatigueya.checked){
         spanMascotaJugador.innerHTML= "Ratigüeya"
         mascotaJugador_msj = "Ratigüeya"
+        imagenMokeponJugador.src = "./assets/mokepons_mokepon_ratigueya_attack.png"
     }
     else {alert("Selecciona una mascota")
     sectionSeleccionarAtaque.style.display = 'none' //muestra la sección del HTML
@@ -76,37 +80,41 @@ function seleccionarMascotaPlayer(){
 function seleccionarMascotaEnemigo(){
     let enemigoAleatorio = aleatorio(1,3)
     let spanMascotaEnemigo = document.getElementById('mascota_enemigo')
+    let imagenMokeponEnemigo= document.getElementById('img-mascota-enemigo')
 
     if (enemigoAleatorio==1){
         spanMascotaEnemigo.innerHTML = "Hipodoge"
         mascotaEnemigo_msj = "Hipodoge"
+        imagenMokeponEnemigo.src = "./assets/mokepons_mokepon_hipodoge_attack.png"
     }
     else if (enemigoAleatorio==2){
         spanMascotaEnemigo.innerHTML = "Capipepo"
         mascotaEnemigo_msj = "Capipepo"
+        imagenMokeponEnemigo.src = "./assets/mokepons_mokepon_capipepo_attack.png"
     }
     else {
         spanMascotaEnemigo.innerHTML = "Ratigüeya"
         mascotaEnemigo_msj = "Ratigüeya"
+        imagenMokeponEnemigo.src = "./assets/mokepons_mokepon_ratigueya_attack.png"
     }
 
 }
 
 function ataqueFuego(){
     ataqueJugador = 1
-    ataqueJugador_msj = 'FUEGO 🔥'
+    ataqueJugador_msj = '🔥'
     ataqueAleatorioEnemigo()
 }
 
 function ataqueAgua(){
     ataqueJugador = 2
-    ataqueJugador_msj = 'AGUA 💧'
+    ataqueJugador_msj = '💧'
     ataqueAleatorioEnemigo()
 }
 
 function ataqueTierra(){
     ataqueJugador = 3
-    ataqueJugador_msj = 'TIERRA 🌱'
+    ataqueJugador_msj = '🌱'
     ataqueAleatorioEnemigo()
 }
 
@@ -114,13 +122,13 @@ function ataqueAleatorioEnemigo(){
      ataqueEnemigo = aleatorio(1,3)
 
     if (ataqueEnemigo == 1){
-        ataqueEnemigo_msj = 'FUEGO 🔥'
+        ataqueEnemigo_msj = '🔥'
     }
     else if (ataqueEnemigo == 2){
-        ataqueEnemigo_msj = 'AGUA 💧'
+        ataqueEnemigo_msj = '💧'
     }
     else {
-        ataqueEnemigo_msj = 'TIERRA 🌱'
+        ataqueEnemigo_msj = '🌱'
     }
 
     combate()
@@ -135,12 +143,9 @@ function crearMensajes(resultado){
     let nuevoAtaqueDelEnemigo = document.createElement('p')
 
     sectionMensajes.innerHTML = resultado
-    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
-    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador_msj
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo_msj
 
-    //let parrafo = document.createElement('p')
-    //parrafo.innerHTML = 'Tu '+ mascotaJugador_msj +' atacó con '+ ataqueJugador_msj+'. '+ mascotaEnemigo_msj+' enemigo atacó con '+ataqueEnemigo_msj+'. '+resultado
-   
     ataquesJugador.appendChild(nuevoAtaqueDelJugador)
     ataquesEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 
