@@ -119,17 +119,25 @@ align-items: center;
 }
 
 input {
-/*radio*/
     display: none;
 }
 
-@media (max-width: 360px){
-    .tarjetas{
-        flex-direction: column;
-    }
+input:checked + label{
+    background-color: #FFC436;
 }
 
 p {
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: 360px){
+    .tarjetas{
+        flex-direction: column;
+    }
+
+    .boton-de-ataque{
+        width: 90px;
+    }
+}
+
