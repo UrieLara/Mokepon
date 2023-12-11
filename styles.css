@@ -52,7 +52,7 @@ body{
     width: 80px;
 }
 
-#btn_mascotas{
+#btn-mascotas{
     width: 180px;
     height: 40px;
     margin-top: 30px;
@@ -63,9 +63,24 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
+.pagina-ataques{
+    display:grid;
+    grid-template-columns: 440px 270px;
+    justify-items: center;
+    align-items: start;
+}
+
+.ataques-y-mensaje{
+    display: grid;
+    grid-template-rows: 160px 124px;
+    align-items: center;
+    justify-items: center;
+
+}
+
 #seleccionar-ataque{
-flex-direction: column;
-align-items: center;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -93,26 +108,25 @@ align-items: center;
     font-family: 'Poppins', sans-serif;
 }
 
-#btn_reiniciar{
+#btn-reiniciar{
     border: none;
     background-color: transparent;
     color: #0174BE;
 
 }
 
-.ataques{
+.batalla{
     display:grid;
     grid-template-columns: 100px 100px;
     justify-items: center;
-    justify-content: center;
     align-content: center;
 }
 
-.ataques img{
+.batalla img{
     width: 80px;
 }
 
-#vida_jugador, #vida_enemigo{
+#vida-jugador, #vida-enemigo{
     font-size: 32px;
     justify-content: center;
     color: #FFC436;

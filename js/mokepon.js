@@ -24,18 +24,18 @@ function iniciarJuego(){
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'none' //oculta la sección del HTML
 
-    let btnMascotaPlayer = document.getElementById('btn_mascotas')
+    let btnMascotaPlayer = document.getElementById('btn-mascotas')
     btnMascotaPlayer.addEventListener('click', seleccionarMascotaPlayer)
 
-    let btnFuego = document.getElementById('btn_fuego')
-    let btnAgua = document.getElementById('btn_agua')
-    let btnTierra = document.getElementById('btn_tierra')
+    let btnFuego = document.getElementById('btn-fuego')
+    let btnAgua = document.getElementById('btn-agua')
+    let btnTierra = document.getElementById('btn-tierra')
 
     btnFuego.addEventListener('click', ataqueFuego)
     btnAgua.addEventListener('click', ataqueAgua)
     btnTierra.addEventListener('click', ataqueTierra)
 
-    let btnReiniciar = document.getElementById('btn_reiniciar')
+    let btnReiniciar = document.getElementById('btn-reiniciar')
     btnReiniciar.addEventListener('click',reiniciarJuego)
 }
 
@@ -57,17 +57,17 @@ function seleccionarMascotaPlayer(){
     if(inputHipodoge.checked){
         spanMascotaJugador.innerHTML= "Hipodoge" 
         mascotaJugador_msj = "Hipodoge"
-        imagenMokeponJugador.src = "./assets/mokepons_mokepon_hipodoge_attack.png"
+        imagenMokeponJugador.src = "./assets/hipodoge-jugador.png"
     }
     else if(inputCapipepo.checked){
         spanMascotaJugador.innerHTML= "Capipepo"
         mascotaJugador_msj = "Capipepo"
-        imagenMokeponJugador.src = "./assets/mokepons_mokepon_capipepo_attack.png"
+        imagenMokeponJugador.src = "./assets/capipepo-jugador.png"
     }
     else if(inputRatigueya.checked){
         spanMascotaJugador.innerHTML= "Ratigüeya"
         mascotaJugador_msj = "Ratigüeya"
-        imagenMokeponJugador.src = "./assets/mokepons_mokepon_ratigueya_attack.png"
+        imagenMokeponJugador.src = "./assets/ratigueya-jugador.png"
     }
     else {alert("Selecciona una mascota")
     sectionSeleccionarAtaque.style.display = 'none' //muestra la sección del HTML
@@ -85,17 +85,17 @@ function seleccionarMascotaEnemigo(){
     if (enemigoAleatorio==1){
         spanMascotaEnemigo.innerHTML = "Hipodoge"
         mascotaEnemigo_msj = "Hipodoge"
-        imagenMokeponEnemigo.src = "./assets/mokepons_mokepon_hipodoge_attack.png"
+        imagenMokeponEnemigo.src = "./assets/hipodoge-enemigo.png"
     }
     else if (enemigoAleatorio==2){
         spanMascotaEnemigo.innerHTML = "Capipepo"
         mascotaEnemigo_msj = "Capipepo"
-        imagenMokeponEnemigo.src = "./assets/mokepons_mokepon_capipepo_attack.png"
+        imagenMokeponEnemigo.src = "./assets/capipepo-enemigo.png"
     }
     else {
         spanMascotaEnemigo.innerHTML = "Ratigüeya"
         mascotaEnemigo_msj = "Ratigüeya"
-        imagenMokeponEnemigo.src = "./assets/mokepons_mokepon_ratigueya_attack.png"
+        imagenMokeponEnemigo.src = "./assets/ratigueya-enemigo.png"
     }
 
 }
@@ -136,8 +136,8 @@ function ataqueAleatorioEnemigo(){
 
 function crearMensajes(resultado){
     let sectionMensajes = document.getElementById("resultado")
-    let ataquesJugador = document.getElementById("ataques_jugador")
-    let ataquesEnemigo = document.getElementById("ataques_enemigo")
+    let ataquesJugador = document.getElementById("ataques-jugador")
+    let ataquesEnemigo = document.getElementById("ataques-enemigo")
 
     let nuevoAtaqueDelJugador = document.createElement('p')
     let nuevoAtaqueDelEnemigo = document.createElement('p')
@@ -157,11 +157,11 @@ function crearMensajeFinal(resultadoFinal){
 
     sectionMensajes.innerHTML = 'FIN DE LA PARTIDA. '+resultadoFinal
 
-    let btnFuego = document.getElementById('btn_fuego')
+    let btnFuego = document.getElementById('btn-fuego')
     btnFuego.disabled = true
-    let btnAgua = document.getElementById('btn_agua')
+    let btnAgua = document.getElementById('btn-agua')
     btnAgua.disabled = true
-    let btnTierra = document.getElementById('btn_tierra')
+    let btnTierra = document.getElementById('btn-tierra')
     btnTierra.disabled = true
 
     let sectionReiniciar = document.getElementById('reiniciar')
@@ -173,8 +173,8 @@ function crearMensajeFinal(resultadoFinal){
 function combate(){
 
     let resultado = ""
-    let vidasJugador_html = document.getElementById("vida_jugador")
-    let vidasEnemigo_html = document.getElementById("vida_enemigo")
+    let vidasJugador_html = document.getElementById("vida-jugador")
+    let vidasEnemigo_html = document.getElementById("vida-enemigo")
 
     //COMBATE
     /*Fuego le gana a Tierra    ||      Fuego = 1
