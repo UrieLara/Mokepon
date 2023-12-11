@@ -55,17 +55,17 @@ function seleccionarMascotaPlayer(){
     let imagenMokeponJugador= document.getElementById('img-mascota-jugador')
 
     if(inputHipodoge.checked){
-        spanMascotaJugador.innerHTML= "Hipodoge" 
+        spanMascotaJugador.innerHTML= "Tu Hipodoge" 
         mascotaJugador_msj = "Hipodoge"
         imagenMokeponJugador.src = "./assets/hipodoge-jugador.png"
     }
     else if(inputCapipepo.checked){
-        spanMascotaJugador.innerHTML= "Capipepo"
+        spanMascotaJugador.innerHTML= "Tu Capipepo"
         mascotaJugador_msj = "Capipepo"
         imagenMokeponJugador.src = "./assets/capipepo-jugador.png"
     }
     else if(inputRatigueya.checked){
-        spanMascotaJugador.innerHTML= "Ratigüeya"
+        spanMascotaJugador.innerHTML= "Tu Ratigüeya"
         mascotaJugador_msj = "Ratigüeya"
         imagenMokeponJugador.src = "./assets/ratigueya-jugador.png"
     }
@@ -83,17 +83,17 @@ function seleccionarMascotaEnemigo(){
     let imagenMokeponEnemigo= document.getElementById('img-mascota-enemigo')
 
     if (enemigoAleatorio==1){
-        spanMascotaEnemigo.innerHTML = "Hipodoge"
+        spanMascotaEnemigo.innerHTML = "Hipodoge Enemigo"
         mascotaEnemigo_msj = "Hipodoge"
         imagenMokeponEnemigo.src = "./assets/hipodoge-enemigo.png"
     }
     else if (enemigoAleatorio==2){
-        spanMascotaEnemigo.innerHTML = "Capipepo"
+        spanMascotaEnemigo.innerHTML = "Capipepo Enemigo"
         mascotaEnemigo_msj = "Capipepo"
         imagenMokeponEnemigo.src = "./assets/capipepo-enemigo.png"
     }
     else {
-        spanMascotaEnemigo.innerHTML = "Ratigüeya"
+        spanMascotaEnemigo.innerHTML = "Ratigüeya Enemigo"
         mascotaEnemigo_msj = "Ratigüeya"
         imagenMokeponEnemigo.src = "./assets/ratigueya-enemigo.png"
     }

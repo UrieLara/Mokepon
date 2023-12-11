@@ -126,6 +126,11 @@ body{
     width: 80px;
 }
 
+#vida{
+    width: 24px;
+    height: 20px;
+}
+
 #vida-jugador, #vida-enemigo{
     font-size: 32px;
     justify-content: center;
@@ -143,6 +148,7 @@ input:checked + label{
 p {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 360px){
