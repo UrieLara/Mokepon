@@ -153,5 +153,10 @@ p {
     .boton-de-ataque{
         width: 90px;
     }
+
+    .pagina-ataques{
+        grid-template-columns: none;
+        grid-template-rows: 300px 300px;
+    }
 }
 
