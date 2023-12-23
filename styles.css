@@ -126,14 +126,12 @@ body{
     width: 80px;
 }
 
-#vida{
+.vida{
     width: 24px;
     height: 20px;
-}
-
-#vida-jugador, #vida-enemigo{
-    font-size: 32px;
+    font-size: 10px;
     justify-content: center;
+    align-items: center;
     color: #FFC436;
 }
 
