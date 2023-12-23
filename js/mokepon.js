@@ -1,10 +1,3 @@
-
-/*
- Langostelvis -> Agua y Fuego
- Tucapalma -> Agua y Tierra
- Pydos -> Tierra y Fuego
-
-*/ 
 let ataqueJugador = 0
 let ataqueEnemigo = 0
 
