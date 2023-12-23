@@ -19,6 +19,7 @@ const imagenMokeponEnemigo= document.getElementById('img-mascota-enemigo')
 const sectionMensajes = document.getElementById("resultado")
 const ataquesJugador = document.getElementById("ataques-jugador")
 const ataquesEnemigo = document.getElementById("ataques-enemigo")
+const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 let mascotaJugador_msj = ''
 let ataqueJugador_msj = ''
@@ -31,6 +32,8 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 
 let mokepones = []
+let opcionDeMokepones
+
 
 
 class Mokepon {
@@ -45,8 +48,6 @@ class Mokepon {
     let hipodoge = new Mokepon('Hipodoge', './assets/hipodoge-jugador.png', 5)
     let capipepo = new Mokepon('Capipepo', './assets/capipepo-jugador.png', 5)
     let ratigueya = new Mokepon('Ratigüeya', './assets/ratigueya-jugador.png', 5)
-
-    mokepones.push(hipodoge,capipepo,ratigueya)
 
     //Objetos literales
     hipodoge.ataques.push(
@@ -73,10 +74,23 @@ class Mokepon {
         {nombre: '🌱', id: 'btn-tierra'}
     )
 
+    mokepones.push(hipodoge,capipepo,ratigueya)
+
 function iniciarJuego(){
 
     sectionReiniciar.style.display = 'none'
     sectionSeleccionarAtaque.style.display = 'none' //oculta la sección del HTML
+
+    mokepones.forEach((mokepon) => {
+        opcionDeMokepones = `
+        <input type="radio" name="mascota" id="${mokepon.nombre}"/>
+        <label class="tarjeta-de-mokepon" for="${mokepon.nombre}">
+            <p>${mokepon.nombre}</p>
+            <img src="${mokepon.foto}" alt="${mokepon.nombre}">
+        </label>
+        `
+        contenedorTarjetas.innerHTML += opcionDeMokepones
+    })
 
     btnMascotaPlayer.addEventListener('click', seleccionarMascotaPlayer)
     btnFuego.addEventListener('click', ataqueFuego)
