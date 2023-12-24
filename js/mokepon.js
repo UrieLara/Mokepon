@@ -25,7 +25,7 @@ let btnFuego
 let btnAgua
 let btnTierra
 
-let ataqueJugador = 0
+let ataqueJugador = []
 let ataqueEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
@@ -36,6 +36,7 @@ let mascotaJugador
 let mokepones = []
 let opcionDeMokepones
 let ataquesMokepon
+let botones = []
 
 
 
@@ -147,24 +148,43 @@ function extraerAtaques(mascotaJugador){
 
 function mostrarAtaques(ataques){
     ataques.forEach(ataques => {
-        ataquesMokepon = `<button id="${ataques.id}" class="boton-de-ataque"> ${ataques.nombre}</button>`
+        ataquesMokepon = `<button id="${ataques.id}" class="boton-de-ataque btnAtaque">${ataques.nombre}</button>`
         contenedorAtaques.innerHTML += ataquesMokepon
     })
 
     btnFuego = document.getElementById('btn-fuego')
     btnAgua = document.getElementById('btn-agua')
     btnTierra = document.getElementById('btn-tierra')
+    botones = document.querySelectorAll('.btnAtaque')
+}
 
-    btnFuego.addEventListener('click', ataqueFuego)
-    btnAgua.addEventListener('click', ataqueAgua)
-    btnTierra.addEventListener('click', ataqueTierra)
+function secuenciaAtaque(){
+    botones.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            if (e.target.textContent === '🔥'){
+                ataqueJugador.push('FUEGO')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            }
+            else if (e.target.textContent === '💧'){
+                ataqueJugador.push('AGUA')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            }
+            else {
+                ataqueJugador.push('TIERRA')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            }
+        })
+    })
 }
 
 function seleccionarMascotaEnemigo(){
     let enemigoAleatorio = aleatorio(0,mokepones.length-1)
     spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre
     imagenMokeponEnemigo.innerHTML = mokepones[enemigoAleatorio].foto
-
+    secuenciaAtaque()
     /*if (enemigoAleatorio==1){
         spanMascotaEnemigo.innerHTML = "Hipodoge Enemigo"
         mascotaEnemigo_msj = "Hipodoge"
@@ -180,24 +200,6 @@ function seleccionarMascotaEnemigo(){
         mascotaEnemigo_msj = "Ratigüeya"
         imagenMokeponEnemigo.src = "./assets/ratigueya-enemigo.png"
     }*/
-}
-
-function ataqueFuego(){
-    ataqueJugador = 1
-    ataqueJugador_msj = '🔥'
-    ataqueAleatorioEnemigo()
-}
-
-function ataqueAgua(){
-    ataqueJugador = 2
-    ataqueJugador_msj = '💧'
-    ataqueAleatorioEnemigo()
-}
-
-function ataqueTierra(){
-    ataqueJugador = 3
-    ataqueJugador_msj = '🌱'
-    ataqueAleatorioEnemigo()
 }
 
 function ataqueAleatorioEnemigo(){
