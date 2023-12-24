@@ -5,7 +5,7 @@ const btnReiniciar = document.getElementById('btn-reiniciar')
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
 const spanMascotaJugador = document.getElementById('mascota_jugador')
-const imagenMokeponJugador= document.getElementById('img-mascota-jugador')
+const imagenMokeponJugador = document.getElementById('img-mascota-jugador')
 
 const spanMascotaEnemigo = document.getElementById('mascota_enemigo')
 const imagenMokeponEnemigo= document.getElementById('img-mascota-enemigo')
@@ -16,15 +16,6 @@ const ataquesEnemigo = document.getElementById('ataques-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('ataques')
 
-let mascotaJugador_msj = ''
-let ataqueJugador_msj = ''
-let mascotaEnemigo_msj = ''
-let ataqueEnemigo_msj = ''
-
-let btnFuego 
-let btnAgua
-let btnTierra
-
 let ataqueJugador = []
 let ataqueEnemigo = 0
 let vidasJugador = 3
@@ -33,25 +24,29 @@ let inputHipodoge
 let inputCapipepo 
 let inputRatigueya
 let mascotaJugador
+
 let mokepones = []
 let opcionDeMokepones
 let ataquesMokepon
+
 let botones = []
-
-
+let btnFuego 
+let btnAgua
+let btnTierra
 
 class Mokepon {
-    constructor(nombre, foto, vida){
+    constructor(nombre, foto, vida, alterEgo){
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.alterEgo = alterEgo
     }
 }
 
-    let hipodoge = new Mokepon('Hipodoge', './assets/hipodoge-jugador.png', 5)
-    let capipepo = new Mokepon('Capipepo', './assets/capipepo-jugador.png', 5)
-    let ratigueya = new Mokepon('Ratigueya', './assets/ratigueya-jugador.png', 5)
+    let hipodoge = new Mokepon('Hipodoge', './assets/hipodoge-jugador.png', 5, './assets/hipodoge-enemigo.png')
+    let capipepo = new Mokepon('Capipepo', './assets/capipepo-jugador.png', 5, './assets/capipepo-enemigo.png')
+    let ratigueya = new Mokepon('Ratigueya', './assets/ratigueya-jugador.png', 5, './assets/ratigueya-enemigo.png')
 
     //Objetos literales
     hipodoge.ataques.push(
@@ -111,20 +106,17 @@ function seleccionarMascotaPlayer(){
     if(inputHipodoge.checked){
         spanMascotaJugador.innerHTML= inputHipodoge.id
         mascotaJugador = inputHipodoge.id
-        /*mascotaJugador_msj = "Hipodoge"
-        imagenMokeponJugador.src = "./assets/hipodoge-jugador.png"*/
+        imagenMokeponJugador.src = "./assets/hipodoge-jugador.png"
     }
     else if(inputCapipepo.checked){
         spanMascotaJugador.innerHTML= inputCapipepo.id
         mascotaJugador = inputCapipepo.id
-        /*mascotaJugador_msj = "Capipepo"
-        imagenMokeponJugador.src = "./assets/capipepo-jugador.png"*/
+        imagenMokeponJugador.src = "./assets/capipepo-jugador.png"
     }
     else if(inputRatigueya.checked){
         spanMascotaJugador.innerHTML= inputRatigueya.id
         mascotaJugador = inputRatigueya.id
-        /*mascotaJugador_msj = "Ratigüeya"
-        imagenMokeponJugador.src = "./assets/ratigueya-jugador.png"*/
+        imagenMokeponJugador.src = "./assets/ratigueya-jugador.png"
     }
     else {alert("Selecciona una mascota")
     sectionSeleccionarAtaque.style.display = 'none' //muestra la sección del HTML
@@ -183,23 +175,8 @@ function secuenciaAtaque(){
 function seleccionarMascotaEnemigo(){
     let enemigoAleatorio = aleatorio(0,mokepones.length-1)
     spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre
-    imagenMokeponEnemigo.innerHTML = mokepones[enemigoAleatorio].foto
+    imagenMokeponEnemigo.src = mokepones[enemigoAleatorio].alterEgo
     secuenciaAtaque()
-    /*if (enemigoAleatorio==1){
-        spanMascotaEnemigo.innerHTML = "Hipodoge Enemigo"
-        mascotaEnemigo_msj = "Hipodoge"
-        imagenMokeponEnemigo.src = "./assets/hipodoge-enemigo.png"
-    }
-    else if (enemigoAleatorio==2){
-        spanMascotaEnemigo.innerHTML = "Capipepo Enemigo"
-        mascotaEnemigo_msj = "Capipepo"
-        imagenMokeponEnemigo.src = "./assets/capipepo-enemigo.png"
-    }
-    else {
-        spanMascotaEnemigo.innerHTML = "Ratigüeya Enemigo"
-        mascotaEnemigo_msj = "Ratigüeya"
-        imagenMokeponEnemigo.src = "./assets/ratigueya-enemigo.png"
-    }*/
 }
 
 function ataqueAleatorioEnemigo(){
