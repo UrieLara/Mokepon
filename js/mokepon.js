@@ -17,7 +17,7 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('ataques')
 
 let ataqueJugador = []
-let ataqueEnemigo = 0
+let ataqueEnemigo = []
 let vidasJugador = 3
 let vidasEnemigo = 3
 let inputHipodoge
@@ -155,43 +155,47 @@ function secuenciaAtaque(){
         boton.addEventListener('click', (e) => {
             if (e.target.textContent === '🔥'){
                 ataqueJugador.push('FUEGO')
-                console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = "true"
             }
             else if (e.target.textContent === '💧'){
                 ataqueJugador.push('AGUA')
-                console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = "true"
             }
             else {
                 ataqueJugador.push('TIERRA')
-                console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = "true"
             }
+
+            ataqueAleatorioEnemigo()
         })
     })
+
+    
 }
 
 function seleccionarMascotaEnemigo(){
     let enemigoAleatorio = aleatorio(0,mokepones.length-1)
     spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre
     imagenMokeponEnemigo.src = mokepones[enemigoAleatorio].alterEgo
+    ataqueEnemigo = mokepones[enemigoAleatorio].ataques
     secuenciaAtaque()
 }
 
 function ataqueAleatorioEnemigo(){
-     ataqueEnemigo = aleatorio(1,3)
-
-    if (ataqueEnemigo == 1){
-        ataqueEnemigo_msj = '🔥'
+    let ataqueAleatorio = aleatorio(0,ataqueEnemigo.length-1)
+    
+    if (ataqueAleatorio == 0 || ataqueAleatorio == 3){
+        ataqueEnemigo.push('🔥')
     }
-    else if (ataqueEnemigo == 2){
-        ataqueEnemigo_msj = '💧'
+    else if (ataqueAleatorio == 2 || ataqueAleatorio == 4){
+        ataqueEnemigo.push('💧')
     }
     else {
-        ataqueEnemigo_msj = '🌱'
+        ataqueEnemigo.push('🌱')
     }
-
     combate()
 }
 
@@ -200,8 +204,8 @@ function crearMensajes(resultado){
     let nuevoAtaqueDelEnemigo = document.createElement('p')
 
     sectionMensajes.innerHTML = resultado
-    nuevoAtaqueDelJugador.innerHTML = ataqueJugador_msj
-    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo_msj
+    //nuevoAtaqueDelJugador.innerHTML = ataquesJugador_msj
+    //nuevoAtaqueDelEnemigo.innerHTML = ataquesEnemigo_msj
 
     ataquesJugador.appendChild(nuevoAtaqueDelJugador)
     ataquesEnemigo.appendChild(nuevoAtaqueDelEnemigo)
