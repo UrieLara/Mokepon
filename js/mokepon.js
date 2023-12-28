@@ -17,7 +17,7 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('ataques')
 
 let ataqueJugador = []
-let ataqueEnemigo = []
+let ataquesMokeponEnemigo = []
 let vidasJugador = 3
 let vidasEnemigo = 3
 let inputHipodoge
@@ -33,6 +33,8 @@ let botones = []
 let btnFuego 
 let btnAgua
 let btnTierra
+let ordenAtaquesEnemigo = 0
+let ataqueEnemigo
 
 class Mokepon {
     constructor(nombre, foto, vida, alterEgo){
@@ -154,58 +156,56 @@ function secuenciaAtaque(){
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
             if (e.target.textContent === '🔥'){
-                ataqueJugador.push('FUEGO')
+                ataqueJugador.push('🔥')
                 boton.style.background = '#112f58'
                 boton.disabled = "true"
             }
             else if (e.target.textContent === '💧'){
-                ataqueJugador.push('AGUA')
+                ataqueJugador.push('💧')
                 boton.style.background = '#112f58'
                 boton.disabled = "true"
             }
             else {
-                ataqueJugador.push('TIERRA')
+                ataqueJugador.push('🌱')
                 boton.style.background = '#112f58'
                 boton.disabled = "true"
             }
 
-            ataqueAleatorioEnemigo()
+            ataqueAleatorioEnemigo(ordenAtaquesEnemigo)
+            ordenAtaquesEnemigo = ordenAtaquesEnemigo + 1
         })
     })
+    
 
     
 }
+
+function OrdenRandom(a, b) {
+    return Math.random() - 0.5;
+  }
 
 function seleccionarMascotaEnemigo(){
     let enemigoAleatorio = aleatorio(0,mokepones.length-1)
     spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre
     imagenMokeponEnemigo.src = mokepones[enemigoAleatorio].alterEgo
-    ataqueEnemigo = mokepones[enemigoAleatorio].ataques
+    ataquesMokeponEnemigo = (mokepones[enemigoAleatorio].ataques).sort(OrdenRandom)
+    console.log(ataquesMokeponEnemigo)
     secuenciaAtaque()
 }
 
-function ataqueAleatorioEnemigo(){
-    let ataqueAleatorio = aleatorio(0,ataqueEnemigo.length-1)
-    
-    if (ataqueAleatorio == 0 || ataqueAleatorio == 3){
-        ataqueEnemigo.push('🔥')
-    }
-    else if (ataqueAleatorio == 2 || ataqueAleatorio == 4){
-        ataqueEnemigo.push('💧')
-    }
-    else {
-        ataqueEnemigo.push('🌱')
-    }
-    combate()
+function ataqueAleatorioEnemigo(orden){
+    ataqueEnemigo = ataquesMokeponEnemigo[orden].nombre
 }
+
+
 
 function crearMensajes(resultado){
     let nuevoAtaqueDelJugador = document.createElement('p')
     let nuevoAtaqueDelEnemigo = document.createElement('p')
 
     sectionMensajes.innerHTML = resultado
-    //nuevoAtaqueDelJugador.innerHTML = ataquesJugador_msj
-    //nuevoAtaqueDelEnemigo.innerHTML = ataquesEnemigo_msj
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
 
     ataquesJugador.appendChild(nuevoAtaqueDelJugador)
     ataquesEnemigo.appendChild(nuevoAtaqueDelEnemigo)
