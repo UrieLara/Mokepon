@@ -190,7 +190,6 @@ function seleccionarMascotaEnemigo(){
     imagenMokeponEnemigo.src = mokepones[enemigoAleatorio].alterEgo
     ataquesMokeponEnemigo = mokepones[enemigoAleatorio].ataques
     ataquesMokeponEnemigo.sort(ordenRandom)
-    console.log(ataquesMokeponEnemigo)
     secuenciaAtaque()
 }
 
@@ -255,14 +254,6 @@ function crearMensajeFinal(resultadoFinal){
                 boton.style.background = '#112f58'
                 boton.disabled = "true"
             })
-
-    /*btnFuego.disabled = true
-    btnFuego.style.background = '#112f58'
-    btnAgua.disabled = true
-    btnAgua.style.background = '#112f58'
-    btnTierra.disabled = true
-    btnTierra.style.background = '#112f58'*/
-
     sectionReiniciar.style.display = 'block'
 }
 
