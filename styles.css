@@ -48,7 +48,7 @@ body{
     display: flex;
     color: white;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .tarjeta-de-mokepon img{
@@ -88,14 +88,16 @@ body{
 }
 
 .boton-de-ataque{
-    background-color: #088395;
+    background-color: #1c3b7d;
     padding: 10px;
+    margin: 2px;
     box-sizing: border-box;
     border-radius: 20px;
     border-color: transparent;
     width: 120px;
     color: white;
     font-family: 'Poppins', sans-serif;
+    font-size: 20px;
 }
 
 #mensajes{
@@ -126,7 +128,7 @@ body{
 }
 
 .batalla img{
-    width: 80px;
+    width: 98px;
 }
 
 #vida{
