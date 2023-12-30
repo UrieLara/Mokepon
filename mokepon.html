@@ -16,6 +16,19 @@
             <button id="btn-mascotas">Seleccionar</button>
         </section>
 
+        <section id="ver-mapa">
+            <h1 class="titulo">Recorre el mapa con tu Mokepon</h1>
+            <canvas id="mapa"></canvas>
+            <div id="flechas">
+                <button class="btn-flechas" onmouseup="detenerMovimiento()" onmousedown="moverMascotaArriba()">↑</button>
+                <div>
+                    <button class="btn-flechas" onmouseup="detenerMovimiento()" onmousedown="moverMascotaIzquierda()">←</button>
+                    <button class="btn-flechas" onmouseup="detenerMovimiento()" onmousedown="moverMascotaDerecha()">→</button>
+                </div>
+                <button class="btn-flechas" onmouseup="detenerMovimiento()" onmousedown="moverMascotaAbajo()">↓</button>
+            </div>
+        </section>
+
         <section id="seleccionar-ataque">
             <h1 class="titulo">MOKEPON! 💧🌱🔥</h1>
            
@@ -33,26 +46,31 @@
                     </div>
                 </div>  
                 
-
-                <div class = "batalla">
+                <div id = "batalla">
                     <div>
                         <p>
-                            <img id="vida" src="./assets/vida.png">
+                            <img class="vida" src="./assets/vida.png">
                             &nbsp x &nbsp
                             <span id="vida-jugador">3</span>
                         </p>
                         <p id="mascota_jugador"></p>
-                        <img id="img-mascota-jugador" src="" alt="Imagen de Mokepon del jugador">
-                        <div id="ataques-jugador"></div>
                     </div>
     
                     <div>
                         <p>
-                            <img id="vida" src="./assets/vida.png">
+                            <img class="vida" src="./assets/vida.png">
                             &nbsp x &nbsp
                             <span id="vida-enemigo">3</span>
                         </p>
                         <p id="mascota_enemigo"></p>
+                    </div>
+
+                    <div>
+                        <img id="img-mascota-jugador" src="" alt="Imagen de Mokepon del jugador">
+                        <div id="ataques-jugador"></div>
+                    </div>
+                    
+                    <div>
                         <img id="img-mascota-enemigo" src="" alt="Imagen de Mokepon del enemigo">
                         <div id="ataques-enemigo"></div>
                     </div>

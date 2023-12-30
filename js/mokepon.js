@@ -16,6 +16,10 @@ const ataquesEnemigo = document.getElementById('ataques-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('ataques')
 
+const sectionVerMapa = document.getElementById('ver-mapa')
+const mapa = document.getElementById('mapa')
+const btnFlechas = document.querySelectorAll('.btn-flechas');
+
 let ataqueMokeponJugador = []
 let ataquesMokeponEnemigo = []
 let vidasJugador
@@ -37,6 +41,9 @@ let btnElectrico
 let btnRoca
 let btnAire
 
+let lienzo = mapa.getContext("2d")
+let intervalo
+
 
 
 class Mokepon {
@@ -47,6 +54,15 @@ class Mokepon {
         this.ataques = []
         this.alterEgo = alterEgo
         this.radio = radio
+        
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -111,7 +127,8 @@ class Mokepon {
 function iniciarJuego(){
 
     sectionReiniciar.style.display = 'none'
-    sectionSeleccionarAtaque.style.display = 'none' //oculta la sección del HTML
+    sectionSeleccionarAtaque.style.display = 'none'
+    sectionVerMapa.style.display = 'none'
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
@@ -148,12 +165,16 @@ function seleccionarMascotaPlayer(){
     if (mascotaJugador === undefined)
     {   
         alert("Selecciona una mascota")
-        sectionSeleccionarAtaque.style.display = 'none' //muestra la sección del HTML
         sectionSeleccionarMascota.style.display = 'flex' //oculta la sección del HTML
+        sectionSeleccionarAtaque.style.display = 'none'
     }
     else{
         sectionSeleccionarAtaque.style.display = 'flex' //muestra la sección del HTML
         sectionSeleccionarMascota.style.display = 'none' //oculta la sección del HTML
+        //sectionVerMapa.style.display = 'flex'
+
+        intervalo = setInterval(pintarPersonaje, 50)
+
         extraerAtaquesyVida(mascotaJugador)
         seleccionarMascotaEnemigo()
     }
@@ -310,7 +331,7 @@ function crearMensajes(resultado){
 }
 
 function crearMensajeFinal(resultadoFinal){
-    sectionMensajes.innerHTML = 'FIN DE LA PARTIDA. \n'+resultadoFinal
+    sectionMensajes.innerHTML = "FIN DE LA PARTIDA."+resultadoFinal
 
     botones.forEach((boton) => {
                 boton.style.background = '#112f58'
@@ -329,6 +350,41 @@ function aleatorio(min, max){
 
 function ordenRandom(a, b) {
     return Math.random() - 0.5;
+}
+
+function pintarPersonaje(){
+    capipepo.x = capipepo.x + capipepo.velocidadX
+    capipepo.y = capipepo.y + capipepo.velocidadY
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(capipepo.mapaFoto, capipepo.x, capipepo.y, capipepo.ancho, capipepo.alto)
+}
+
+function moverMascotaDerecha(){
+    btnFlechas[2].style.backgroundColor = '#112f58';
+    capipepo.velocidadX = 5
+}
+
+function moverMascotaIzquierda(){
+    btnFlechas[1].style.backgroundColor = '#112f58';
+    capipepo.velocidadX = - 5
+}
+
+function moverMascotaArriba(){
+    btnFlechas[0].style.backgroundColor = '#112f58';
+    capipepo.velocidadY = - 5
+}
+
+function moverMascotaAbajo(){
+    btnFlechas[3].style.backgroundColor = '#112f58';
+    capipepo.velocidadY = 5
+}
+
+function detenerMovimiento(){
+    for (let i = 0; i < btnFlechas.length; i++) {
+        btnFlechas[i].style.backgroundColor = "white";
+    }
+    capipepo.velocidadX = 0
+    capipepo.velocidadY = 0
 }
 //Se escucha el load de la ventana para que cargue el código después de que haya cargado el html. 
 window.addEventListener('load',iniciarJuego)

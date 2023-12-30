@@ -2,7 +2,8 @@
 Para hacer referencias a class en HTML se usa un punto (.)
 Para hacer referencia a un id se usa un gato (#) */
 
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@300&display=swap');
+
 
 body{
     font-family: 'Poppins', sans-serif;
@@ -68,23 +69,21 @@ body{
 
 .pagina-ataques{
     display:grid;
-    grid-template-columns: 440px 270px;
+    grid-template-columns: 440px 440px;
     justify-items: center;
     align-items: start;
 }
 
 .ataques-y-mensaje{
     display: grid;
-    grid-template-rows: 160px 124px;
+    grid-template-rows: 210px 124px;
     align-items: center;
     justify-items: center;
-
 }
 
 #seleccionar-ataque{
     flex-direction: column;
     align-items: center;
-
 }
 
 .boton-de-ataque{
@@ -117,29 +116,55 @@ body{
     border: none;
     background-color: transparent;
     color: #0174BE;
-
 }
 
-.batalla{
+#batalla{
     display:grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 112px 100px;
     justify-items: center;
     align-content: center;
 }
 
-.batalla img{
-    width: 98px;
-}
-
-#vida{
+.vida{
     width: 24px;
     height: 20px;
+}
+
+#img-mascota-jugador, #img-mascota-enemigo {
+    width: 80px;
+    height: 80px;
 }
 
 #vida-jugador, #vida-enemigo{
     font-size: 32px;
     justify-content: center;
     color: #FFC436;
+}
+
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mapa {
+    border: 2px solid white;
+}
+
+#flechas {
+    display:grid;
+    grid-template-rows: 44px 44px;
+    justify-items: center;
+    align-content: center;
+}
+
+.btn-flechas {
+    width: 50px;
+    height: 50px;
+    margin: 20px;
+    border-radius: 50%;
+    font-size:30px;
 }
 
 input {
@@ -157,6 +182,18 @@ p {
 }
 
 @media (max-width: 360px){
+
+    .titulo {
+        font-family: 'Lilita One', sans-serif;
+        color: white;
+        font-size: 28px;
+    }
+    
+    .subtitulo{
+     color: white;
+     font-size: 18px;
+    }
+
     .tarjetas{
         flex-direction: column;
     }
@@ -168,6 +205,25 @@ p {
     .pagina-ataques{
         grid-template-columns: none;
         grid-template-rows: 300px 300px;
+        grid-template-columns: 300px;
+    }
+
+    .ataques-y-mensaje {
+        grid-template-rows: 172px 100px;
+    }
+
+    #batalla {
+        grid-template-columns: 188px 188px;
+        grid-template-rows: 120px 312px;
+        margin: 10px;
+    }
+
+    #mensajes{
+        margin: 40px 0px 0px 0px;
+    }
+
+    body{
+        font-size: 14px;
     }
 }
 
