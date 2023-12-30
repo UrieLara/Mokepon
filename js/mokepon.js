@@ -169,9 +169,9 @@ function seleccionarMascotaPlayer(){
         sectionSeleccionarAtaque.style.display = 'none'
     }
     else{
-        sectionSeleccionarAtaque.style.display = 'flex' //muestra la sección del HTML
+        //sectionSeleccionarAtaque.style.display = 'flex' //muestra la sección del HTML
         sectionSeleccionarMascota.style.display = 'none' //oculta la sección del HTML
-        //sectionVerMapa.style.display = 'flex'
+        sectionVerMapa.style.display = 'flex'
 
         intervalo = setInterval(pintarPersonaje, 50)
 
@@ -331,7 +331,7 @@ function crearMensajes(resultado){
 }
 
 function crearMensajeFinal(resultadoFinal){
-    sectionMensajes.innerHTML = "FIN DE LA PARTIDA."+resultadoFinal
+    sectionMensajes.innerHTML = "FIN DE LA PARTIDA. "+resultadoFinal
 
     botones.forEach((boton) => {
                 boton.style.background = '#112f58'
@@ -359,23 +359,23 @@ function pintarPersonaje(){
     lienzo.drawImage(capipepo.mapaFoto, capipepo.x, capipepo.y, capipepo.ancho, capipepo.alto)
 }
 
-function moverMascotaDerecha(){
-    btnFlechas[2].style.backgroundColor = '#112f58';
-    capipepo.velocidadX = 5
-}
-
-function moverMascotaIzquierda(){
-    btnFlechas[1].style.backgroundColor = '#112f58';
-    capipepo.velocidadX = - 5
-}
-
 function moverMascotaArriba(){
-    btnFlechas[0].style.backgroundColor = '#112f58';
+    btnFlechas[0].style.backgroundColor = '#92C7F9';
     capipepo.velocidadY = - 5
 }
 
+function moverMascotaIzquierda(){
+    btnFlechas[1].style.backgroundColor = '#92C7F9';
+    capipepo.velocidadX = - 5
+}
+
+function moverMascotaDerecha(){
+    btnFlechas[2].style.backgroundColor = '#92C7F9';
+    capipepo.velocidadX = 5
+}
+
 function moverMascotaAbajo(){
-    btnFlechas[3].style.backgroundColor = '#112f58';
+    btnFlechas[3].style.backgroundColor = '#92C7F9';
     capipepo.velocidadY = 5
 }
 
