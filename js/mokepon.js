@@ -183,12 +183,10 @@ function seleccionarMascotaPlayer(){
         sectionSeleccionarAtaque.style.display = 'none'
     }
     else{
-        //sectionSeleccionarAtaque.style.display = 'flex' //muestra la sección del HTML
         sectionSeleccionarMascota.style.display = 'none' //oculta la sección del HTML
         sectionVerMapa.style.display = 'flex'
 
         extraerAtaquesyVida(mascotaJugador)
-        seleccionarMascotaEnemigo()
         iniciarMapa()
     }
     
@@ -267,13 +265,11 @@ function secuenciaAtaque(){
     
 }
 
-function seleccionarMascotaEnemigo(){
-    let enemigoAleatorio = aleatorio(0,mokepones.length-1)
-
-    vidasEnemigo = mokepones[enemigoAleatorio].vida
-    spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre + " enemigo"
-    imagenMokeponEnemigo.src = mokepones[enemigoAleatorio].alterEgo
-    ataquesMokeponEnemigo = mokepones[enemigoAleatorio].ataques
+function seleccionarMascotaEnemigo(enemigo){
+    vidasEnemigo = enemigo.vida
+    spanMascotaEnemigo.innerHTML = enemigo.nombre + " enemigo"
+    imagenMokeponEnemigo.src = enemigo.alterEgo
+    ataquesMokeponEnemigo = enemigo.ataques
     ataquesMokeponEnemigo.sort(ordenRandom)
     secuenciaAtaque()
 }
@@ -394,7 +390,6 @@ function pintarCanvas(){
     pintarMokeponesEnemigos()
 
     if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY!== 0){
-
         for (let i = 0; i < enemigosEnMapa; i++) {
             revisarColision(mascotaEnemigoObjeto[i])
         }
@@ -467,6 +462,8 @@ function obtenerObjetoMascota(mokepon)
 }
 
 function revisarColision(enemigo){
+    let colisionesSimultaneas = 0 
+
     const arribaEnemigo = enemigo.y
     const abajoEnemigo = enemigo.y + enemigo.alto
     const izquierdaEnemigo = enemigo.x
@@ -485,7 +482,12 @@ function revisarColision(enemigo){
     ) { return }
     
     detenerMovimiento()
-    alert("Hay colision con " + enemigo.nombre)    
+    colisionesSimultaneas += 1
+    console.log(colisionesSimultaneas)
+
+    sectionSeleccionarAtaque.style.display = 'flex'
+    sectionVerMapa.style.display = "none"
+    seleccionarMascotaEnemigo(enemigo)
 }
 
 //Se escucha el load de la ventana para que cargue el código después de que haya cargado el html. 
