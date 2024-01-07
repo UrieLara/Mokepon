@@ -92,7 +92,7 @@ class Mokepon {
         {nombre: '💧', id: 'btn-agua'},
         {nombre: '💧', id: 'btn-agua'},
         {nombre: '🍃', id: 'btn-aire'},
-        {nombre: '🌱', id: 'btn-planta'}
+        {nombre: '🌱', id: 'btn-tierra'}
     )
 
     capipepo.ataques.push(
@@ -121,8 +121,8 @@ class Mokepon {
 
     pydos.ataques.push(
         {nombre: '🌱', id: 'btn-tierra'},
-        {nombre: '🌩️', id: 'btn-electico'},
-        {nombre: '🌩️', id: 'btn-electico'},
+        {nombre: '🌩️', id: 'btn-electrico'},
+        {nombre: '🌩️', id: 'btn-electrico'},
         {nombre: '🪨', id: 'btn-roca'},
         {nombre: '🪨', id: 'btn-roca'}
     )
@@ -225,7 +225,7 @@ function secuenciaAtaque(){
             if (e.target.textContent === '🔥'){
                 ataqueMokeponJugador.push('🔥')
                 ataqueJugador = '🔥'
-                boton.style.background = '#112f58'
+                boton.style.background = 'rgb(88 17 17)'
                 boton.disabled = "true"
             }
             else if (e.target.textContent === '💧'){
@@ -237,31 +237,33 @@ function secuenciaAtaque(){
             else if (e.target.textContent === '🌱'){
                 ataqueMokeponJugador.push('🌱')
                 ataqueJugador = '🌱'
-                boton.style.background = '#112f58'
+                boton.style.background = 'rgb(2 71 24)'
                 boton.disabled = "true"
             }
             else if (e.target.textContent === '🌩️'){
                 ataqueMokeponJugador.push('🌩️')
                 ataqueJugador = '🌩️'
-                boton.style.background = '#112f58'
+                boton.style.background = 'rgb(126 135 0)'
                 boton.disabled = "true"
             }
             else if (e.target.textContent === '🪨'){
                 ataqueMokeponJugador.push('🪨')
                 ataqueJugador = '🪨'
-                boton.style.background = '#112f58'
+                boton.style.background = 'rgb(45 45 47)'
                 boton.disabled = "true"
             }
             else if (e.target.textContent === '🍃'){
                 ataqueMokeponJugador.push('🍃')
                 ataqueJugador = '🍃'
-                boton.style.background = '#112f58'
+                boton.style.background = 'rgb(8 147 135)'
                 boton.disabled = "true"
             }
 
             ataqueAleatorioEnemigo(ordenAtaquesEnemigo)
         })
-    })
+    }) 
+    
+   
     
 }
 
@@ -343,7 +345,7 @@ function crearMensajeFinal(resultadoFinal){
     sectionMensajes.innerHTML = "FIN DE LA PARTIDA. "+resultadoFinal
 
     botones.forEach((boton) => {
-                boton.style.background = '#112f58'
+                boton.style.background = '#161616'
                 boton.disabled = "true"
             })
     sectionReiniciar.style.display = 'block'
@@ -482,8 +484,6 @@ function revisarColision(enemigo){
     ) { return }
     
     detenerMovimiento()
-    colisionesSimultaneas += 1
-    console.log(colisionesSimultaneas)
 
     sectionSeleccionarAtaque.style.display = 'flex'
     sectionVerMapa.style.display = "none"

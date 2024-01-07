@@ -7,7 +7,8 @@ Para hacer referencia a un id se usa un gato (#) */
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: #071952;
+    background-image: url("./assets/fondo.jpeg");
+    background-size: 1500px 750px;
     color: #FFF0CE;
 }
 
@@ -81,13 +82,17 @@ body{
     justify-items: center;
 }
 
+#ataques-jugador, #ataques-enemigo{
+    background-color: #292e4585;
+    font-size: 20px;
+}
+
 #seleccionar-ataque{
     flex-direction: column;
     align-items: center;
 }
 
 .boton-de-ataque{
-    background-color: #1c3b7d;
     padding: 10px;
     margin: 2px;
     box-sizing: border-box;
@@ -96,7 +101,31 @@ body{
     width: 120px;
     color: white;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
+}
+
+#btn-fuego{
+    background-color: firebrick;
+}
+
+#btn-agua{
+    background-color: #0174BE;
+}
+
+#btn-tierra{
+    background-color: #612c19;
+}
+
+#btn-electrico{
+    background-color: #fbfb2b;
+}
+
+#btn-roca{
+    background-color: grey;
+}
+
+#btn-aire{
+    background-color: #6ea794ba
 }
 
 #mensajes{
