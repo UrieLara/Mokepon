@@ -215,12 +215,12 @@ p {
 
     .titulo {
         font-family: 'Lilita One', sans-serif;
-        color: white;
+        color: red;
         font-size: 28px;
     }
     
     .subtitulo{
-     color: white;
+     color: black;
      font-size: 18px;
     }
 
@@ -230,6 +230,7 @@ p {
 
     .boton-de-ataque{
         width: 90px;
+        font-size: 20px;
     }
 
     .pagina-ataques{
@@ -243,17 +244,20 @@ p {
     }
 
     #batalla {
-        grid-template-columns: 188px 188px;
+        grid-template-columns: 144px 144px;
         grid-template-rows: 120px 312px;
         margin: 10px;
     }
 
     #mensajes{
         margin: 40px 0px 0px 0px;
+        width: 200px;
     }
 
     body{
         font-size: 14px;
+        background-image: url("./assets/fondo.jpeg");
+        background-size: 1000px 1000px;
     }
 }
 

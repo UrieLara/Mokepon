@@ -21,10 +21,10 @@
             <canvas id="mapa"></canvas>
             
             <div id="flechas">
-                <button class="btn-flechas" style="grid-column: 2; grid-row: 1;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaArriba()">↑</button>
-                <button class="btn-flechas" style="grid-column: 1; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaIzquierda()">←</button>
-                <button class="btn-flechas" style="grid-column: 3; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaDerecha()">→</button>
-                <button class="btn-flechas" style="grid-column: 2; grid-row: 3;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaAbajo()">↓</button>
+                <button class="btn-flechas" style="grid-column: 2; grid-row: 1;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaArriba()" touchend="detenerMovimiento()" touchstart="moverMascotaArriba()" >↑</button>
+                <button class="btn-flechas" style="grid-column: 1; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaIzquierda()" touchend="detenerMovimiento()" touchstart="moverMascotaIzquierda()">←</button>
+                <button class="btn-flechas" style="grid-column: 3; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaDerecha()" touchend="detenerMovimiento()" touchstart="moverMascotaDerecha()">→</button>
+                <button class="btn-flechas" style="grid-column: 2; grid-row: 3;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaAbajo()" touchend="detenerMovimiento()" touchstart="moverMascotaAbajo()">↓</button>
             </div>
         </section>
 

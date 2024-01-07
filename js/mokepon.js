@@ -49,6 +49,18 @@ let mapaBackground = new Image()
 mapaBackground.src = './assets/mokemap.png'
 let intervalo
 
+let alturaDelMapa
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoMapa = 350
+
+if(anchoDelMapa > anchoMaximoMapa){
+    anchoDelMapa = anchoMaximoMapa - 20
+}
+alturaDelMapa = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaDelMapa
+
 
 
 class Mokepon {
@@ -364,8 +376,6 @@ function ordenRandom(a, b) {
 }
 
 function iniciarMapa(){
-    mapa.width = 340
-    mapa.height = 290
     intervalo = setInterval(pintarCanvas, 50)
 
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
@@ -375,8 +385,8 @@ function iniciarMapa(){
     for (let i = 0; i < enemigosEnMapa; i++) {
          numAleatorio = aleatorio(0,mokepones.length-1)
          mascotaEnemigoObjeto[i] = Object.assign({} , mokepones[numAleatorio])
-         mascotaEnemigoObjeto[i].x = aleatorio(0,300)
-         mascotaEnemigoObjeto[i].y = aleatorio(0,250)
+         mascotaEnemigoObjeto[i].x = aleatorio(0,anchoDelMapa-30)
+         mascotaEnemigoObjeto[i].y = aleatorio(0,alturaDelMapa-30)
      }
 
     window.addEventListener('keydown', sePresionoTecla)
@@ -464,8 +474,6 @@ function obtenerObjetoMascota(mokepon)
 }
 
 function revisarColision(enemigo){
-    let colisionesSimultaneas = 0 
-
     const arribaEnemigo = enemigo.y
     const abajoEnemigo = enemigo.y + enemigo.alto
     const izquierdaEnemigo = enemigo.x
@@ -484,7 +492,6 @@ function revisarColision(enemigo){
     ) { return }
     
     detenerMovimiento()
-
     sectionSeleccionarAtaque.style.display = 'flex'
     sectionVerMapa.style.display = "none"
     seleccionarMascotaEnemigo(enemigo)
