@@ -392,6 +392,14 @@ function pintarCanvas(){
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
     mascotaJugadorObjeto.pintarMokepon()
     pintarMokeponesEnemigos()
+
+    if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY!== 0){
+
+        for (let i = 0; i < enemigosEnMapa; i++) {
+            revisarColision(mascotaEnemigoObjeto[i])
+        }
+        
+    }
 }
 
 function pintarMokeponesEnemigos(){
@@ -456,6 +464,28 @@ function obtenerObjetoMascota(mokepon)
             return mokepones[i]
         }
     }
+}
+
+function revisarColision(enemigo){
+    const arribaEnemigo = enemigo.y
+    const abajoEnemigo = enemigo.y + enemigo.alto
+    const izquierdaEnemigo = enemigo.x
+    const derechaEnemigo = enemigo.x + enemigo.ancho
+
+    const arribaMascota = mascotaJugadorObjeto.y
+    const abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto
+    const izquierdaMascota = mascotaJugadorObjeto.x
+    const derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho
+    
+    if(
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) { return }
+    
+    detenerMovimiento()
+    alert("Hay colision con " + enemigo.nombre)    
 }
 
 //Se escucha el load de la ventana para que cargue el código después de que haya cargado el html. 
