@@ -76,13 +76,9 @@ class Mokepon {
     pintarMokepon(){
         lienzo.drawImage(this.mapaFoto, this.x, this.y, this.ancho, this.alto)
     }
-
-    pintarMokeponEnemigo(){
-        lienzo.drawImage(this.alterEgoAvatar, this.x, this.y, this.ancho, this.alto)
-    }
-    
 }
  
+
     let hipodoge = new Mokepon('Hipodoge',3, './assets/hipodoge-jugador.png', './assets/hipodoge-avatar.png', './assets/hipodoge-enemigo.png', './assets/hipodoge-avatar-enemigo.png')
     let capipepo = new Mokepon('Capipepo',3, './assets/capipepo-jugador.png', './assets/capipepo-avatar.png', './assets/capipepo-enemigo.png','./assets/capipepo-avatar-enemigo.png' )
     let ratigueya = new Mokepon('Ratigueya',3, './assets/ratigueya-jugador.png', './assets/ratigueya-avatar.png', './assets/ratigueya-enemigo.png', './assets/ratigueya-avatar-enemigo.png')
@@ -140,6 +136,7 @@ class Mokepon {
     )
 
     mokepones.push(hipodoge,capipepo,ratigueya,langostelvis,pydos,tucapalma)
+
 
 function iniciarJuego(){
 
@@ -379,10 +376,9 @@ function iniciarMapa(){
      //Elegir enemigos aleatorios y dibujarlos
     for (let i = 0; i < enemigosEnMapa; i++) {
          numAleatorio = aleatorio(0,mokepones.length-1)
-         mokepones[numAleatorio].x = aleatorio(0,320)
-         mokepones[numAleatorio].y = aleatorio(0,260)
-         mascotaEnemigoObjeto[i] = mokepones[numAleatorio]
-         console.log(mascotaEnemigoObjeto[i])
+         mascotaEnemigoObjeto[i] = Object.assign({} , mokepones[numAleatorio])
+         mascotaEnemigoObjeto[i].x = aleatorio(0,300)
+         mascotaEnemigoObjeto[i].y = aleatorio(0,250)
      }
 
     window.addEventListener('keydown', sePresionoTecla)
@@ -395,13 +391,13 @@ function pintarCanvas(){
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
     mascotaJugadorObjeto.pintarMokepon()
+    pintarMokeponesEnemigos()
+}
 
-    //dibujar mokepones enemigos
-    for (let i = 0; i < enemigosEnMapa; i++) {
-        //("mascotaEnemigoObjeto:", mascotaEnemigoObjeto[i], "x:", mascotaEnemigoObjeto[i].x, "y:", mascotaEnemigoObjeto[i].y)
-        mascotaEnemigoObjeto[i].pintarMokeponEnemigo()
-    }
-    
+function pintarMokeponesEnemigos(){
+    for (let i = 0; i < mascotaEnemigoObjeto.length; i++) { 
+        lienzo.drawImage(mascotaEnemigoObjeto[i].alterEgoAvatar, mascotaEnemigoObjeto[i].x, mascotaEnemigoObjeto[i].y, mascotaEnemigoObjeto[i].ancho, mascotaEnemigoObjeto[i].alto)
+    } 
 }
 
 function moverMascotaArriba(){
