@@ -46,7 +46,7 @@ let btnAire
 
 let lienzo = mapa.getContext("2d")
 let mapaBackground = new Image()
-mapaBackground.src = './assets/mokemap.png'
+mapaBackground.src = './assets/mapa.jpeg'
 let intervalo
 
 let alturaDelMapa
@@ -385,8 +385,8 @@ function iniciarMapa(){
     for (let i = 0; i < enemigosEnMapa; i++) {
          numAleatorio = aleatorio(0,mokepones.length-1)
          mascotaEnemigoObjeto[i] = Object.assign({} , mokepones[numAleatorio])
-         mascotaEnemigoObjeto[i].x = aleatorio(0,anchoDelMapa-30)
-         mascotaEnemigoObjeto[i].y = aleatorio(0,alturaDelMapa-30)
+         mascotaEnemigoObjeto[i].x = aleatorio(50,anchoDelMapa-40)
+         mascotaEnemigoObjeto[i].y = aleatorio(50,alturaDelMapa-40)
      }
 
     window.addEventListener('keydown', sePresionoTecla)
@@ -394,8 +394,28 @@ function iniciarMapa(){
 }
 
 function pintarCanvas(){
-    mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX
-    mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
+    //Delimitar area mascota Jugador
+    if(mascotaJugadorObjeto.y<0){ 
+        mascotaJugadorObjeto.y=0
+    }
+    else if(mascotaJugadorObjeto.y > alturaDelMapa-40){
+        mascotaJugadorObjeto.y = alturaDelMapa-40
+    }
+    else {
+        mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
+    }
+
+    if(mascotaJugadorObjeto.x<0){ 
+        mascotaJugadorObjeto.x=0
+    }
+    else if(mascotaJugadorObjeto.x > anchoDelMapa-40){
+        mascotaJugadorObjeto.x = anchoDelMapa-40
+    }
+    else {
+        mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX
+    }
+   
+    
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
     mascotaJugadorObjeto.pintarMokepon()
@@ -418,6 +438,7 @@ function pintarMokeponesEnemigos(){
 function moverMascotaArriba(){
     btnFlechas[0].style.backgroundColor = '#92C7F9';
     mascotaJugadorObjeto.velocidadY = - 5
+   
 }
 
 function moverMascotaIzquierda(){

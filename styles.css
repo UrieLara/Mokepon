@@ -8,7 +8,7 @@ Para hacer referencia a un id se usa un gato (#) */
 body{
     font-family: 'Poppins', sans-serif;
     background-image: url("./assets/fondo.jpeg");
-    background-size: 1500px 750px;
+    background-size: 1500px 1080px;
     color: #FFF0CE;
 }
 
@@ -257,7 +257,7 @@ p {
     body{
         font-size: 14px;
         background-image: url("./assets/fondo.jpeg");
-        background-size: 1000px 1000px;
+        background-size: 1500px 1080px;
     }
 }
 
