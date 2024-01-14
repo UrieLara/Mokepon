@@ -8,7 +8,8 @@ Para hacer referencia a un id se usa un gato (#) */
 body{
     font-family: 'Poppins', sans-serif;
     background-image: url("./assets/fondo.jpeg");
-    background-size: 1500px 650px;
+    background-attachment: fixed;
+    background-size: 1500px 900px;
     color: #FFF0CE;
 }
 
@@ -21,12 +22,13 @@ body{
 
 .titulo {
     font-family: 'Lilita One', sans-serif;
-    color: white;
+    color: #fcd53f;
     font-size: 32px;
+    margin: 10px;
 }
 
 .subtitulo{
- color: white;
+ color:black;
  font-size: 22px;
 }
 
@@ -63,9 +65,15 @@ body{
     margin-top: 30px;
     border-radius: 20px;
     background-color: transparent;
-    border: 2px solid white;
-    color: white;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
     font-family: 'Poppins', sans-serif;
+}
+
+.victorias-y-derrotas{
+    display: grid;
+    grid-template-columns: 120px 120px;
+    justify-items: center;
 }
 
 .pagina-ataques{
@@ -104,46 +112,22 @@ body{
     font-size: 30px;
 }
 
-#btn-fuego{
-    background-color: firebrick;
-}
-
-#btn-agua{
-    background-color: #0174BE;
-}
-
-#btn-tierra{
-    background-color: #612c19;
-}
-
-#btn-electrico{
-    background-color: #fbfb2b;
-}
-
-#btn-roca{
-    background-color: grey;
-}
-
-#btn-aire{
-    background-color: #6ea794ba
-}
-
-#mensajes{
+.mensajes{
     display: flex;
     width: 280px;
-    background-color: #FFF0CE;
+    background-color: #ffffff;
     color: #071952;
     padding: 20px;
-    margin: 60px 0px 30px 0px;
+    margin: 40px 0px 30px 0px;
     border-radius: 20px;
     flex-direction: column;
     align-items: center;
     font-family: 'Poppins', sans-serif;
 }
 
-#btn-reiniciar{
+.btn-msjs{
     border: none;
-    background-color: transparent;
+    background-color: white;
     color: #0174BE;
 }
 
@@ -195,6 +179,17 @@ body{
     height: 50px;
     border-radius: 50%;
     font-size:30px;
+}
+
+#reiniciar{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#img-final{
+    width: 200px;
+    height: 200px;
 }
 
 input {
@@ -257,7 +252,7 @@ p {
     body{
         font-size: 14px;
         background-image: url("./assets/fondo.jpeg");
-        background-size: 1500px 1080px;
+        background-size: cover;
     }
 }
 

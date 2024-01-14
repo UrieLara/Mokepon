@@ -18,6 +18,16 @@
 
         <section id="ver-mapa">
             <h1 class="titulo">Recorre el mapa con tu Mokepon</h1>
+            <section class = "victorias-y-derrotas">
+                <div>
+                    <h3>Victorias: <span id="victorias">0</span></h3>
+                </div>
+                <div>
+                    <h3>Derrotas: <span id="derrotas">0</span></h3>
+                </div>
+            </section>
+           
+           
             <canvas id="mapa"></canvas>
             
             <div id="flechas">
@@ -33,14 +43,14 @@
            
             <div class="pagina-ataques"> 
                 <div class="ataques-y-mensaje">
-                    <div id="ataques">
+                    <div id="ataques-mokepon-jugador">
                         <h2 class="subtitulo">Elige tu ataque:</h2>
                     </div>
 
-                    <div id="mensajes">
+                    <div class="mensajes">
                             <p id="resultado">Mucha suerte!</p>
-                        <section id="reiniciar">
-                            <button id="btn-reiniciar">Reiniciar</button>
+                        <section id="continuar-batalla">
+                            <button id="btn-continuar" class="btn-msjs">Continuar</button>
                         </section>
                     </div>
                 </div>  
@@ -76,6 +86,25 @@
                 </div>
             </div>       
         </section>
+
+        <section id="reiniciar">
+            <h1 class="titulo">MOKEPON! 💥</h1>
+
+            <section class = "victorias-y-derrotas">
+                <div>
+                    <h3>Victorias: <span id="victorias">X</span></h3>
+                </div>
+                <div>
+                    <h3>Derrotas: <span id="derrotas">X</span></h3>
+                </div>
+            </section>
+
+            <h2 id="resultado-final" class="subtitulo"></h2>
+
+            <img id="img-final" src="" alt="Imagen de Mokepon del jugador">
+            <button id="btn-reiniciar" class="mensajes btn-msjs">Reiniciar</button>
+        </section>
+
         <script src="./js/mokepon.js"></script>
     </body>
 </html>
