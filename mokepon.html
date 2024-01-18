@@ -7,11 +7,17 @@
     </head>
 
     <body>
+        <button onclick="mostrarReglas()" style="float: right;font-size: 20px;">Reglas</button>
+
         <section id="seleccionar-mascota">
             <h1 class="titulo">MOKEPON! 💥</h1>
             <h2 class="subtitulo"> Elige a tu mascota:</h2>
 
-            <div id= "contenedorTarjetas" class="tarjetas"></div>
+            <div id="contenedorTarjetas" class="tarjetas"></div>
+            <div id="ataques-mascota-inicio" class="sombreado"></div> 
+            
+            <p class="sombreado">Número de enemigos:</p> <input type="number" id="num-enemigos" value="3" min="1" max="5">
+           
             
             <button id="btn-mascotas">Seleccionar</button>
         </section>
@@ -20,10 +26,10 @@
             <h1 class="titulo">Recorre el mapa con tu Mokepon</h1>
             <section class = "victorias-y-derrotas">
                 <div>
-                    <h3>Victorias: <span id="victorias">0</span></h3>
+                    <h3 class="subtitulo">Victorias: <span id="victorias" class="subtitulo">0</span></h3>
                 </div>
                 <div>
-                    <h3>Derrotas: <span id="derrotas">0</span></h3>
+                    <h3 class="subtitulo">Derrotas: <span id="derrotas" class="subtitulo">0</span></h3>
                 </div>
             </section>
            
@@ -55,14 +61,17 @@
                     </div>
                 </div>  
                 
-                <div id = "batalla">
+                <section id = "batalla">
+                    <div></div>
+                    <div><p class="sombreado">Ataques del enemigo:</p><p id="ataques-mascota-enemigo" class="sombreado"></p></div>
+
                     <div>
                         <p>
                             <img class="vida" src="./assets/vida.png">
                             &nbsp x &nbsp
                             <span id="vida-jugador">3</span>
                         </p>
-                        <p id="mascota_jugador"></p>
+                        <p id="mascota_jugador" class="sombreado"></p>
                     </div>
     
                     <div>
@@ -71,7 +80,7 @@
                             &nbsp x &nbsp
                             <span id="vida-enemigo">3</span>
                         </p>
-                        <p id="mascota_enemigo"></p>
+                        <p id="mascota_enemigo" class="sombreado"></p>
                     </div>
 
                     <div>
@@ -80,10 +89,11 @@
                     </div>
 
                     <div>
+                        
                         <img id="img-mascota-enemigo" src="" alt="Imagen de Mokepon del enemigo">
                         <div id="ataques-enemigo"></div>
                     </div>
-                </div>
+                </section>
             </div>       
         </section>
 
@@ -92,17 +102,17 @@
 
             <section class = "victorias-y-derrotas">
                 <div>
-                    <h3>Victorias: <span id="victorias">X</span></h3>
+                    <h3>Victorias: <span id="victorias-final">X</span></h3>
                 </div>
                 <div>
-                    <h3>Derrotas: <span id="derrotas">X</span></h3>
+                    <h3>Derrotas: <span id="derrotas-final">X</span></h3>
                 </div>
             </section>
 
             <h2 id="resultado-final" class="subtitulo"></h2>
 
             <img id="img-final" src="" alt="Imagen de Mokepon del jugador">
-            <button id="btn-reiniciar" class="mensajes btn-msjs">Reiniciar</button>
+            <button id="btn-reiniciar" class="mensajes btn-msjs">Volver a jugar</button>
         </section>
 
         <script src="./js/mokepon.js"></script>
