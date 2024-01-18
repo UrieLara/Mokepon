@@ -651,7 +651,7 @@ function continuarBatallas(){
     sectionSeleccionarAtaque.style.display = 'none'
     sectionMensajes.innerHTML = 'Mucha suerte!'
 
-    if(enemigosJugados === numEnemigosMapa.value){
+    if(enemigosJugados.toString() === numEnemigosMapa.value){
         resultadoFinal()
     }
 }
