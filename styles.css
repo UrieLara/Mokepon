@@ -20,10 +20,11 @@ body{
     align-items: center;
 }
 
+
 .titulo {
     font-family: 'Lilita One', sans-serif;
     color: #fcd53f;
-    font-size: 36px;
+    font-size: 35px;
     margin: 10px;
 }
 
@@ -63,15 +64,20 @@ body{
     background-color: #00003970;
 }
 
-#btn-mascotas{
-    width: 180px;
+.btn-transparente{
     height: 40px;
-    margin-top: 30px;
     border-radius: 20px;
-    background-color: transparent;
+    background-color: #0a3eeda6;
     border: 2px solid whitesmoke;
     color: whitesmoke;
     font-family: 'Poppins', sans-serif;
+}
+
+.doble-columna{
+    display: grid;
+    grid-template-columns: 194px 74px;
+    justify-items: center;
+    align-items: center;
 }
 
 .victorias-y-derrotas{
@@ -210,10 +216,10 @@ p {
 
 @media (max-width: 360px){
 
+
     .titulo {
         font-family: 'Lilita One', sans-serif;
-        color: red;
-        font-size: 28px;
+        font-size: 30px;
     }
     
     .subtitulo{
@@ -223,6 +229,10 @@ p {
 
     .tarjetas{
         flex-direction: column;
+    }
+
+    .doble-columna{
+        grid-template-columns: 160px 58px
     }
 
     .boton-de-ataque{

@@ -7,23 +7,34 @@
     </head>
 
     <body>
-        <button onclick="mostrarReglas()" style="float: right;font-size: 20px;">Reglas</button>
+       
 
         <section id="seleccionar-mascota">
             <h1 class="titulo">MOKEPON! 💥</h1>
+            <button onclick="mostrarReglas()" style="float: right; width: 120px;" class="btn-transparente">Reglas</button>
+
             <h2 class="subtitulo"> Elige a tu mascota:</h2>
 
             <div id="contenedorTarjetas" class="tarjetas"></div>
             <div id="ataques-mascota-inicio" class="sombreado"></div> 
             
-            <p class="sombreado">Número de enemigos:</p> <input type="number" id="num-enemigos" value="3" min="1" max="5">
+            <div class="doble-columna">
+                <div>
+                    <p class="sombreado">Número de enemigos:</p>
+                </div>
+                <div>
+                    <input type="number" id="num-enemigos" value="3" min="1" max="5">
+                </div>
+            </div>
+           
            
             
-            <button id="btn-mascotas">Seleccionar</button>
+            <button id="btn-mascotas" class="btn-transparente" style="width: 180px; margin-top: 20px;">Seleccionar</button>
         </section>
 
         <section id="ver-mapa">
-            <h1 class="titulo">Recorre el mapa con tu Mokepon</h1>
+                <h1 class="titulo">Recorre el mapa con tu Mokepon</h1>
+
             <section class = "victorias-y-derrotas">
                 <div>
                     <h3 class="subtitulo">Victorias: <span id="victorias" class="subtitulo">0</span></h3>
@@ -32,7 +43,6 @@
                     <h3 class="subtitulo">Derrotas: <span id="derrotas" class="subtitulo">0</span></h3>
                 </div>
             </section>
-           
            
             <canvas id="mapa"></canvas>
             
@@ -46,6 +56,8 @@
 
         <section id="seleccionar-ataque">
             <h1 class="titulo">MOKEPON! 💥</h1>
+            <button onclick="mostrarReglas()" style="float: right; width: 120px;" class="btn-transparente">Reglas</button>
+
            
             <div class="pagina-ataques"> 
                 <div class="ataques-y-mensaje">
