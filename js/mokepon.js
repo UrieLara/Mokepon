@@ -36,6 +36,8 @@ let victoriasFinalHTML = document.getElementById('victorias-final')
 let derrotasFinalHTML = document.getElementById('derrotas-final')
 let ganadorFinalHtml = document.getElementById('resultado-final')
 
+let jugadorId 
+
 let ataquesMokeponJugador = []
 let ataquesMokeponEnemigo = []
 let vidasJugador
@@ -202,7 +204,24 @@ function iniciarJuego(){
     btnMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
     btnReiniciar.addEventListener('click',reiniciarJuego)
     btnContinuar.addEventListener('click',continuarBatallas) 
+
+    unirseAlJuego()
 }
+
+function unirseAlJuego(){
+    fetch("http://localhost:8080/unirse")
+    .then(function (res){
+
+        if (res.ok){
+            res.text()
+                .then(function (respuesta) {
+                    console.log(respuesta)
+                    jugadorId = respuesta
+                })
+        }
+    })
+}
+
 
 function mostrarAtaquesInicio(mascota){
     let stringAtaques = ""
@@ -240,6 +259,20 @@ function seleccionarMascotaJugador(){
             iniciarMapa()
         }
     } 
+
+    seleccionarMokepon(mascotaJugador)
+}
+
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+    method: "post",
+    headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
 }
 
 function extraerAtaquesyVida(mascotaJugador){
@@ -527,8 +560,31 @@ function pintarCanvas(){
             }
             
         }
-        
     }
+
+    enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+}
+
+function enviarPosicion(x, y){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x,
+            y
+        })
+    
+    })
+    .then(function (res){
+        if (res.ok) {
+            res.json()
+                .then( function ({enemigos}) {
+                    console.log(enemigos)
+                })
+        }
+    })
 }
 
 function pintarMokeponesEnemigos(){
