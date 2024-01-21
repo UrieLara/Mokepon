@@ -80,6 +80,19 @@ body{
     align-items: center;
 }
 
+#multijugador{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#elegir-juego{
+    display: grid;
+    grid-template-columns: 304px 304px;
+    justify-items: center;
+    align-items: center;
+}
+
 .victorias-y-derrotas{
     display: grid;
     grid-template-columns: 140px 140px;

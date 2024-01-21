@@ -1,7 +1,11 @@
 const sectionReiniciar = document.getElementById('reiniciar')
 const sectionContinuar = document.getElementById('continuar-batalla')
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+//const divNumeroEnemigos = document.getElementById('numero-enemigos')
+const sectionMultijugador = document.getElementById('multijugador')
 const btnMascotaJugador = document.getElementById('btn-mascotas')
+const btnBots = document.getElementById('btn-bots')
+const btnMultijugador = document.getElementById('btn-multijugador')
 const btnReiniciar = document.getElementById('btn-reiniciar')
 const btnContinuar = document.getElementById('btn-continuar')
 
@@ -35,6 +39,9 @@ let derrotasHTML = document.getElementById('derrotas')
 let victoriasFinalHTML = document.getElementById('victorias-final')
 let derrotasFinalHTML = document.getElementById('derrotas-final')
 let ganadorFinalHtml = document.getElementById('resultado-final')
+
+let jugadorId 
+let multijugador = false
 
 let ataquesMokeponJugador = []
 let ataquesMokeponEnemigo = []
@@ -182,6 +189,8 @@ function iniciarJuego(){
     sectionContinuar.style.display = 'none'
     sectionSeleccionarAtaque.style.display = 'none'
     sectionVerMapa.style.display = 'none'
+    sectionMultijugador.style.display = 'none'
+    sectionMultijugador.style.display = 'none'
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
@@ -202,6 +211,22 @@ function iniciarJuego(){
     btnMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
     btnReiniciar.addEventListener('click',reiniciarJuego)
     btnContinuar.addEventListener('click',continuarBatallas) 
+
+    unirseAlJuego()
+}
+
+function unirseAlJuego(){
+    fetch("http://localhost:8080/unirse")
+    .then(function (res){
+
+        if (res.ok){
+            res.text()
+                .then(function (respuesta) {
+                    jugadorId = respuesta
+                    console.log(respuesta)
+                })
+        }
+    })
 }
 
 function mostrarAtaquesInicio(mascota){
@@ -212,7 +237,7 @@ function mostrarAtaquesInicio(mascota){
     mostrarAtaquesInicioHtml.innerHTML = "Ataques de "+ mascota.nombre + ": " + stringAtaques
 }
 
-function seleccionarMascotaJugador(){ 
+function seleccionarMascotaJugador(){
     for (let i = 0; i<mokepones.length; i++) {
         if(mokepones[i].radio.checked){
             spanMascotaJugador.innerHTML= "Tu "+mokepones[i].nombre
@@ -222,24 +247,52 @@ function seleccionarMascotaJugador(){
         }
     }
 
+    
+    if (mascotaJugador === undefined){   
+        alert("Selecciona una mascota")
+        sectionSeleccionarMascota.style.display = 'flex' 
+        sectionSeleccionarAtaque.style.display = 'none'
+    }
+    else{
+        extraerAtaquesyVida(mascotaJugador)
+        sectionSeleccionarMascota.style.display = 'none' 
+        sectionMultijugador.style.display = 'flex'
+        sectionMultijugador.style.display = 'flex'
+
+        btnBots.addEventListener('click',batallaConBots)
+        btnMultijugador.addEventListener('click',batallaMultijugador) 
+    } 
+}
+
+function batallaConBots(){
+    multijugador = false
     if(numEnemigosMapa.value < 1 || numEnemigosMapa.value > 5){
         alert("El número de enemigos debe ser de 1 a 5")
     }
     else{
-            if (mascotaJugador === undefined)
-        {   
-            alert("Selecciona una mascota")
-            sectionSeleccionarMascota.style.display = 'flex' 
-            sectionSeleccionarAtaque.style.display = 'none'
-        }
-        else{
-            sectionSeleccionarMascota.style.display = 'none' 
-            sectionVerMapa.style.display = 'flex'
+        iniciarMapa()     
+    }  
+}
 
-            extraerAtaquesyVida(mascotaJugador)
-            iniciarMapa()
-        }
-    } 
+function batallaMultijugador(){
+    multijugador = true
+    seleccionarMokepon(mascotaJugador)
+
+    iniciarMapa()
+}
+
+
+
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+    method: "post",
+    headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
 }
 
 function extraerAtaquesyVida(mascotaJugador){
@@ -465,29 +518,38 @@ function barajar(objetos) {
   }
 
 function iniciarMapa(){
+    sectionMultijugador.style.display = 'none'
+    sectionVerMapa.style.display = 'flex'
     intervalo = setInterval(pintarCanvas, 50)
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
 
-    let numAleatorio = 0
-     //Elegir enemigos aleatorios y dibujarlos
-    for (let i = 0; i < numEnemigosMapa.value; i++) {
-         numAleatorio = aleatorio(0,mokepones.length-1)
-         mascotaEnemigoObjeto[i] = Object.assign({} , mokepones[numAleatorio])
-         mascotaEnemigoObjeto[i].x = aleatorio(50,anchoDelMapa-40)
-         mascotaEnemigoObjeto[i].y = aleatorio(50,alturaDelMapa-40)
-     }
-     //Separar enemigos juntos
-        for (let i = 0; i < numEnemigosMapa.value; i++) {
-            for (let j = 0; j < numEnemigosMapa.value; j++) {
-               if (i!==j){
-                    if (Math.abs(mascotaEnemigoObjeto[i].x - mascotaEnemigoObjeto[j].x) < 40 && 
-                        Math.abs(mascotaEnemigoObjeto[i].y - mascotaEnemigoObjeto[j].y) < 40){
-                        mascotaEnemigoObjeto[i].x = aleatorio(50,anchoDelMapa-40)
-                        mascotaEnemigoObjeto[i].y = aleatorio(50,alturaDelMapa-40)
-                    }
-                }
-            }    
+
+    if(multijugador === false){
+        let numAleatorio = 0
+        //Elegir enemigos aleatorios y dibujarlos
+       for (let i = 0; i < numEnemigosMapa.value; i++) {
+            numAleatorio = aleatorio(0,mokepones.length-1)
+            mascotaEnemigoObjeto[i] = Object.assign({} , mokepones[numAleatorio])
+            mascotaEnemigoObjeto[i].x = aleatorio(50,anchoDelMapa-40)
+            mascotaEnemigoObjeto[i].y = aleatorio(50,alturaDelMapa-40)
         }
+        //Separar enemigos juntos
+           for (let i = 0; i < numEnemigosMapa.value; i++) {
+               for (let j = 0; j < numEnemigosMapa.value; j++) {
+                  if (i!==j){
+                       if (Math.abs(mascotaEnemigoObjeto[i].x - mascotaEnemigoObjeto[j].x) < 40 && 
+                           Math.abs(mascotaEnemigoObjeto[i].y - mascotaEnemigoObjeto[j].y) < 40){
+                           mascotaEnemigoObjeto[i].x = aleatorio(50,anchoDelMapa-40)
+                           mascotaEnemigoObjeto[i].y = aleatorio(50,alturaDelMapa-40)
+                       }
+                   }
+               }    
+           }
+    }
+    else{
+        //multijugador
+    }
+    
     window.addEventListener('keydown', sePresionoTecla)
     window.addEventListener('keyup', detenerMovimiento)
 }
@@ -518,7 +580,11 @@ function pintarCanvas(){
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
     mascotaJugadorObjeto.pintarMokepon()
-    pintarMokeponesEnemigos()
+
+    if(multijugador === false){
+        pintarMokeponesEnemigos()
+    }
+    
 
     if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY!== 0){
         for (let i = 0; i < numEnemigosMapa.value; i++) {
@@ -527,8 +593,31 @@ function pintarCanvas(){
             }
             
         }
-        
     }
+
+    enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+}
+
+function enviarPosicion(x, y){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x,
+            y
+        })
+    
+    })
+    .then(function (res){
+        if (res.ok) {
+            res.json()
+                .then( function ({enemigos}) {
+                    console.log(enemigos)
+                })
+        }
+    })
 }
 
 function pintarMokeponesEnemigos(){

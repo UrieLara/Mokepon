@@ -17,19 +17,25 @@
 
             <div id="contenedorTarjetas" class="tarjetas"></div>
             <div id="ataques-mascota-inicio" class="sombreado"></div> 
-            
-            <div class="doble-columna">
-                <div>
-                    <p class="sombreado">Número de enemigos:</p>
-                </div>
-                <div>
-                    <input type="number" id="num-enemigos" value="3" min="1" max="5">
-                </div>
-            </div>
-           
-           
-            
+
             <button id="btn-mascotas" class="btn-transparente" style="width: 180px; margin-top: 20px;">Seleccionar</button>
+        </section>
+
+        <section id="multijugador">
+            <h1 class="titulo">MOKEPON! 💥</h1>
+            <h2 class="subtitulo" style="margin-bottom: 98px;"> Elige tu tipo de juego:</h2>
+
+            <div id="elegir-juego">
+                <div>
+                    <div id="numero-enemigos" class="doble-columna">
+                        <p class="sombreado">Número de enemigos:</p>
+                        <input type="number" id="num-enemigos" value="3" min="1" max="5">
+                    </div>
+                    <button id="btn-bots" class="btn-transparente" style="width: 180px; margin-left: 50px;">Contra bots 🤖</button>
+                </div>
+
+                <button id="btn-multijugador" class="btn-transparente" style="width: 180px;">Multijugador 🌐</button>
+            </div>
         </section>
 
         <section id="ver-mapa">
