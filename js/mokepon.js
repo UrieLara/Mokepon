@@ -49,6 +49,7 @@ let vidasJugador
 let vidasEnemigo
 
 let mokepones = []
+let mokeponesEnemigos = []
 let opcionDeMokepones
 let mascotaJugador
 let fotoJugador
@@ -91,12 +92,13 @@ mapa.height = alturaDelMapa
 
 
 class Mokepon {
-    constructor(nombre, vida, foto, avatar, alterEgo, enemigoAvatar, radio, x = 10, y = 10){
+    constructor(nombre, vida, foto, avatar, alterEgo, enemigoAvatar, radio, x = 10, y = 10, id=null){
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
         this.radio = radio
+        this.id = id
         
         this.x = x
         this.y = y
@@ -115,13 +117,8 @@ class Mokepon {
         this.nube.src = './assets/nube.png'
     }
 
-    pintarMokepon(){
-        lienzo.drawImage(this.nube, this.x-10, this.y+20, this.ancho+20, this.alto-10)
-        lienzo.drawImage(this.mapaFoto, this.x, this.y, this.ancho, this.alto)
-    }
 }
  
-
     let hipodoge = new Mokepon('Hipodoge',3, './assets/hipodoge-jugador.png', './assets/hipodoge-avatar.png', './assets/hipodoge-enemigo.png', './assets/hipodoge-avatar-enemigo.png')
     let capipepo = new Mokepon('Capipepo',3, './assets/capipepo-jugador.png', './assets/capipepo-avatar.png', './assets/capipepo-enemigo.png','./assets/capipepo-avatar-enemigo.png' )
     let ratigueya = new Mokepon('Ratigueya',3, './assets/ratigueya-jugador.png', './assets/ratigueya-avatar.png', './assets/ratigueya-enemigo.png', './assets/ratigueya-avatar-enemigo.png')
@@ -212,7 +209,7 @@ function iniciarJuego(){
     btnReiniciar.addEventListener('click',reiniciarJuego)
     btnContinuar.addEventListener('click',continuarBatallas) 
 
-    unirseAlJuego()
+   
 }
 
 function unirseAlJuego(){
@@ -223,7 +220,6 @@ function unirseAlJuego(){
             res.text()
                 .then(function (respuesta) {
                     jugadorId = respuesta
-                    console.log(respuesta)
                 })
         }
     })
@@ -247,13 +243,13 @@ function seleccionarMascotaJugador(){
         }
     }
 
-    
     if (mascotaJugador === undefined){   
         alert("Selecciona una mascota")
         sectionSeleccionarMascota.style.display = 'flex' 
         sectionSeleccionarAtaque.style.display = 'none'
     }
     else{
+        unirseAlJuego()
         extraerAtaquesyVida(mascotaJugador)
         sectionSeleccionarMascota.style.display = 'none' 
         sectionMultijugador.style.display = 'flex'
@@ -276,12 +272,11 @@ function batallaConBots(){
 
 function batallaMultijugador(){
     multijugador = true
+    mascotaEnemigoObjeto = []
     seleccionarMokepon(mascotaJugador)
-
+    
     iniciarMapa()
 }
-
-
 
 function seleccionarMokepon(mascotaJugador){
     fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
@@ -547,7 +542,7 @@ function iniciarMapa(){
            }
     }
     else{
-        //multijugador
+       //
     }
     
     window.addEventListener('keydown', sePresionoTecla)
@@ -579,23 +574,26 @@ function pintarCanvas(){
     
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
-    mascotaJugadorObjeto.pintarMokepon()
+    pintarMokepon(mascotaJugadorObjeto)
 
     if(multijugador === false){
         pintarMokeponesEnemigos()
-    }
-    
 
-    if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY!== 0){
-        for (let i = 0; i < numEnemigosMapa.value; i++) {
-            if(mascotaEnemigoObjeto[i]!== null){
-                revisarColision(mascotaEnemigoObjeto[i])
+        if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY!== 0){
+            for (let i = 0; i < numEnemigosMapa.value; i++) {
+                if(mascotaEnemigoObjeto[i]!== null){
+                    revisarColision(mascotaEnemigoObjeto[i])
+                }  
             }
-            
         }
     }
 
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+    
+    mokeponesEnemigos.forEach(function (mokepon){
+        console.log(mokeponesEnemigos)
+        pintarMokepon(mokepon)
+    })
 }
 
 function enviarPosicion(x, y){
@@ -614,25 +612,47 @@ function enviarPosicion(x, y){
         if (res.ok) {
             res.json()
                 .then( function ({enemigos}) {
-                    console.log(enemigos)
+                       mokeponesEnemigos = enemigos.map(function (enemigo) {
+                            let mokeponEnemigo = null
+                            if(enemigo.mokepon!== null && enemigo.id!==jugadorId){
+                                const mokeponNombre = enemigo.mokepon.nombre
+                                console.log("mokeponNombre:", mokeponNombre)
+
+                                for (let i = 0; i < mokepones.length; i++) {
+                                    if (mokeponNombre === mokepones[i].nombre){
+                                       mokeponEnemigo = Object.assign({} , mokepones[i])
+                                    }
+                                }
+                            }
+                        
+                            mokeponEnemigo.x = enemigo.x
+                            mokeponEnemigo.y = enemigo.y
+
+                           return mokeponEnemigo
+
+                        })
                 })
         }
     })
 }
 
+function pintarMokepon(mokepon){
+        lienzo.drawImage(mokepon.nube, mokepon.x-10, mokepon.y+20, mokepon.ancho+20, mokepon.alto-10)
+        lienzo.drawImage(mokepon.mapaFoto, mokepon.x, mokepon.y, mokepon.ancho, mokepon.alto)
+}
+
 function pintarMokeponesEnemigos(){
     for (let i = 0; i < mascotaEnemigoObjeto.length; i++) { 
-        if(mascotaEnemigoObjeto[i]!== null){
-            lienzo.drawImage(
-                mascotaEnemigoObjeto[i].alterEgoAvatar, 
-                mascotaEnemigoObjeto[i].x, 
-                mascotaEnemigoObjeto[i].y, 
-                mascotaEnemigoObjeto[i].ancho, 
-                mascotaEnemigoObjeto[i].alto)
-        }
-    
-    } 
-}
+            if(mascotaEnemigoObjeto[i]!== null){
+                lienzo.drawImage(
+                    mascotaEnemigoObjeto[i].alterEgoAvatar, 
+                    mascotaEnemigoObjeto[i].x, 
+                    mascotaEnemigoObjeto[i].y, 
+                    mascotaEnemigoObjeto[i].ancho, 
+                    mascotaEnemigoObjeto[i].alto)
+            }
+        } 
+    }
 
 function moverMascotaArriba(){
     btnFlechas[0].style.backgroundColor = '#92C7F9';
