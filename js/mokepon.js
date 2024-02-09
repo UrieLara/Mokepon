@@ -184,7 +184,7 @@ function mostrarReglas(){
 }
 
 function iniciarJuego(){
-    unirseAlJuego()
+
     sectionReiniciar.style.display = 'none'
     sectionContinuar.style.display = 'none'
     sectionSeleccionarAtaque.style.display = 'none'
@@ -263,11 +263,17 @@ function batallaConBots(){
 }
 
 function batallaMultijugador(){
+    unirseAlJuego()
+
+    
     multijugador = true
     mascotaEnemigoObjeto = []    
-    seleccionarMokepon(mascotaJugador)
-
-    iniciarMapa()
+   
+    setTimeout(function() {
+        seleccionarMokepon(mascotaJugador)
+        iniciarMapa()
+      }, 500);
+    
     
 }
 
@@ -281,8 +287,8 @@ function unirseAlJuego(){
                     jugadorId = respuesta
                 })
         }
-    })
 
+    })
 }
 
 function seleccionarMokepon(mascotaJugador){
@@ -375,13 +381,20 @@ function secuenciaAtaque(){
                 boton.disabled = true
                 recibirAtaque = true
             }
-            
-            if(recibirAtaque === true && multijugador === false){
-                ataqueAleatorioEnemigo(ordenAtaquesEnemigo)
-            } //ataquesMokeponJugador.length === 5  && 
-            else if (multijugador === true){
-                    enviarAtaques()
+
+            if(multijugador === false){
+                if(recibirAtaque === true){
+                    ataqueAleatorioEnemigo(ordenAtaquesEnemigo)
                 }
+            }
+            else{
+                enviarAtaques()
+            }
+            
+             /*//ataquesMokeponJugador.length === 5  && 
+            else if (ataquesMokeponJugador.length === 5  && multijugador === true){
+                    enviarAtaques()
+            }*/
             
         })
     })     
@@ -630,8 +643,6 @@ function pintarCanvas(){
 }
 
 function enviarPosicion(x, y){
-    //console.log("multijugador enviarPosicion")
-    //console.log("x: ", x)
     fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
         method: "post",
         headers: {
@@ -647,22 +658,19 @@ function enviarPosicion(x, y){
         if (res.ok) {
             res.json()
                 .then( function ({enemigos}) {
-                    console.log(mokeponesEnemigos)
                        mokeponesEnemigos = enemigos.map(function (enemigo) {
                             let mokeponEnemigo = null
-                           // if(enemigo.mokepon!== null && enemigo.id!==jugadorId){
-                                //console.log("enemigo: ", enemigo)
-                                //console.log("enemigo.mokepon: ", enemigo.mokepon)
-                                //console.log("enemigo.mokepon.nombre: ", enemigo.mokepon.nombre)
+
+                           if(enemigo.mokepon!== null || enemigo.mokepon!== undefined){
                                 const mokeponNombre = enemigo.mokepon.nombre
 
                                 for (let i = 0; i < mokepones.length; i++) {
                                     if (mokeponNombre === mokepones[i].nombre){
-                                       mokeponEnemigo = Object.assign({} , mokepones[i])
-                                       mokeponEnemigo.id = enemigo.id
+                                    mokeponEnemigo = Object.assign({} , mokepones[i])
+                                    mokeponEnemigo.id = enemigo.id
                                     }
                                 }
-                            //}
+                            }
                         
                             mokeponEnemigo.x = enemigo.x
                             mokeponEnemigo.y = enemigo.y
@@ -776,7 +784,9 @@ function revisarColision(enemigo){
     
     detenerMovimiento()
 
-    enemigoId = enemigo.id
+    if(multijugador){
+        enemigoId = enemigo.id
+    }
 
     vidasJugador = 3 //reinicio de vida
     vidasJugadorHtml.innerHTML = vidasJugador
@@ -785,9 +795,7 @@ function revisarColision(enemigo){
     sectionSeleccionarAtaque.style.display = 'flex'
     sectionVerMapa.style.display = "none"
 
-    if(multijugador == false){
-        seleccionarMascotaEnemigo(enemigo)
-    }
+    seleccionarMascotaEnemigo(enemigo)
     
 }
 
