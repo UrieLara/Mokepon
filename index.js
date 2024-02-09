@@ -1,3 +1,6 @@
+//encender servidor: node index.js
+//apagar servidor: Ctrl + C
+
 const express = require("express")
 const cors = require("cors")
 
@@ -23,6 +26,10 @@ class Jugador {
     actualizarPosicion(x, y){
         this.x = x
         this.y = y
+    }
+
+    asignarAtaques(ataques){
+        this.ataques = ataques
     }
 }
 
@@ -52,8 +59,7 @@ app.post("/mokepon/:jugadorId", (req, res) => {
         jugadores[jugadorIndex].asignarMokepon(mokepon)
     }
 
-    console.log(jugadores)
-    console.log(jugadorId)
+    //console.log(jugadores)
     res.end()
 })
 
@@ -72,6 +78,28 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
 
     res.send({
         enemigos
+    })
+})
+
+app.post("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || ""
+    const ataques = req.body.ataques || []
+    
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id)
+
+    if(jugadorIndex >= 0){
+        jugadores[jugadorIndex].asignarAtaques(ataques)
+    }
+
+    res.end()
+})
+
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || ""
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId)
+
+    res.send({
+        ataques: jugador.ataques || []
     })
 })
 
