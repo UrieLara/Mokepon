@@ -8,8 +8,7 @@ Para hacer referencia a un id se usa un gato (#) */
 body{
     font-family: 'Poppins', sans-serif;
     background-image: url("./assets/fondo.jpeg");
-    background-attachment: fixed;
-    background-size: 1500px 900px;
+    
     color: #FFF0CE;
 }
 
@@ -88,7 +87,6 @@ body{
 
 #elegir-juego{
     display: grid;
-    grid-template-columns: 304px 304px;
     justify-items: center;
     align-items: center;
 }
@@ -193,6 +191,7 @@ body{
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: end;
+    user-select: none;
 }
 
 .btn-flechas {
@@ -227,8 +226,30 @@ p {
     align-items: center;
 }
 
-@media (max-width: 360px){
+@media (min-width: 768px) {
 
+    body{
+        background-attachment: fixed;
+        background-size: 1500px 900px;
+    }
+    
+    #elegir-juego{
+        grid-template-columns: 304px 304px;
+    }
+
+    #btn-bots{
+        width: 180px; 
+        margin-left: 50px;
+    }
+    
+  }
+
+@media (max-width: 767px){
+
+    body{
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
 
     .titulo {
         font-family: 'Lilita One', sans-serif;
@@ -246,6 +267,15 @@ p {
 
     .doble-columna{
         grid-template-columns: 160px 58px
+    }
+
+    #elegir-juego{
+        grid-template-rows: 104px 150px;
+    }
+
+    #btn-bots{
+        width: 180px; 
+        margin-left: 25px;
     }
 
     .boton-de-ataque{

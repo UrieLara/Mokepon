@@ -31,7 +31,7 @@
                         <p class="sombreado">Número de enemigos:</p>
                         <input type="number" id="num-enemigos" value="3" min="1" max="5">
                     </div>
-                    <button id="btn-bots" class="btn-transparente" style="width: 180px; margin-left: 50px;">Contra bots 🤖</button>
+                    <button id="btn-bots" class="btn-transparente">Contra bots 🤖</button>
                 </div>
 
                 <button id="btn-multijugador" class="btn-transparente" style="width: 180px;">Multijugador 🌐</button>
@@ -53,10 +53,10 @@
             <canvas id="mapa"></canvas>
             
             <div id="flechas">
-                <button class="btn-flechas" style="grid-column: 2; grid-row: 1;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaArriba()" touchend="detenerMovimiento()" touchstart="moverMascotaArriba()" >↑</button>
-                <button class="btn-flechas" style="grid-column: 1; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaIzquierda()" touchend="detenerMovimiento()" touchstart="moverMascotaIzquierda()">←</button>
-                <button class="btn-flechas" style="grid-column: 3; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaDerecha()" touchend="detenerMovimiento()" touchstart="moverMascotaDerecha()">→</button>
-                <button class="btn-flechas" style="grid-column: 2; grid-row: 3;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaAbajo()" touchend="detenerMovimiento()" touchstart="moverMascotaAbajo()">↓</button>
+                <button class="btn-flechas" style="grid-column: 2; grid-row: 1;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaArriba()" ontouched="detenerMovimiento()" ontouchstart="moverMascotaArriba()" >↑</button>
+                <button class="btn-flechas" style="grid-column: 1; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaIzquierda()" ontouched="detenerMovimiento()" ontouchstart="moverMascotaIzquierda()">←</button>
+                <button class="btn-flechas" style="grid-column: 3; grid-row: 2;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaDerecha()" ontouched="detenerMovimiento()" ontouchstart="moverMascotaDerecha()">→</button>
+                <button class="btn-flechas" style="grid-column: 2; grid-row: 3;" onmouseup="detenerMovimiento()" onmousedown="moverMascotaAbajo()" ontouched="detenerMovimiento()" ontouchstart="moverMascotaAbajo()">↓</button>
             </div>
         </section>
 
@@ -68,7 +68,7 @@
             <div class="pagina-ataques"> 
                 <div class="ataques-y-mensaje">
                     <div id="ataques-mokepon-jugador">
-                        <h2 class="subtitulo">Elige tu ataque:</h2>
+                        <span class="subtitulo" id="msj-elegir-ataques">Elige tu ataque:</span>
                     </div>
 
                     <div class="mensajes">
@@ -133,6 +133,6 @@
             <button id="btn-volver" class="mensajes btn-msjs">Volver a jugar</button>
         </section>
 
-        <script src="./js/mokepon.js"></script>
+        <script src="./mokepon.js"></script>
     </body>
 </html>
