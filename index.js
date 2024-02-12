@@ -31,6 +31,7 @@ class Jugador {
     asignarAtaques(ataques){
         this.ataques = ataques
     }
+
 }
 
 app.use(cors())
@@ -46,6 +47,21 @@ app.get("/unirse", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
 
     res.send(id)
+    console.log("jugadorId: ", jugador.id)
+})
+
+app.get("/salir/:jugadorId", (req, res) => {
+    const jugadorId = req.params.jugadorId || ""
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id)
+    let jugadorEliminado = ""
+
+    if(jugadores[jugadorIndex].id === jugadorId){
+        jugadorEliminado = jugadores[jugadorIndex]
+        jugadores.splice(jugadorIndex, 1)
+    }
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    
+    res.send(jugadorEliminado)
 })
 
 app.post("/mokepon/:jugadorId", (req, res) => {
