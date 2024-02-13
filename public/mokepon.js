@@ -1,5 +1,5 @@
-/* Reemplazar la dirección IP por la de la dirección 
-inalámbrica Wifi IPv4 de tu computador */
+/* Reemplazar "localhost" por la dirección IP
+inalámbrica Wifi IPv4 del PC */
 
 const sectionReiniciar = document.getElementById('reiniciar')
 const sectionContinuar = document.getElementById('continuar-batalla')
@@ -20,7 +20,6 @@ const imagenMascotaFinal = document.getElementById('img-final')
 const spanMascotaEnemigo = document.getElementById('mascota_enemigo')
 const imagenMokeponEnemigo= document.getElementById('img-mascota-enemigo')
 
-let spanEligeAtaques = document.getElementById('msj-elegir-ataques')
 const sectionMensajes = document.getElementById('resultado')
 let ataquesJugadorHtml = document.getElementById('ataques-jugador')
 let ataquesEnemigoHtml = document.getElementById('ataques-enemigo')
@@ -281,7 +280,7 @@ function batallaMultijugador(){
 }
 
 function unirseAlJuego(){
-    fetch("http://192.168.0.13:8080/unirse")
+    fetch("http://localhost:8080/unirse")
     .then(function (res){
 
         if (res.ok){
@@ -295,7 +294,7 @@ function unirseAlJuego(){
 }
 
 function seleccionarMokepon(mascotaJugador){
-    fetch(`http://192.168.0.13:8080/mokepon/${jugadorId}`, {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
     method: "post",
     headers: {
             "Content-Type": "application/json"
@@ -338,8 +337,16 @@ function mostrarAtaques(ataques){
 
 function secuenciaAtaque(){
     clearInterval(intervalo)
-    sectionContinuar.style.display = 'none'
     let recibirAtaque = false
+    sectionContinuar.style.display = 'none'
+    const pEligeAtaques = document.getElementById('elegir-ataques')
+    
+    if(multijugador){
+        pEligeAtaques.innerHTML = "Selecciona el orden de todos tus ataques:"
+    }
+    else{
+        pEligeAtaques.innerHTML ="Elige tu ataque:"
+    }
 
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
@@ -386,24 +393,27 @@ function secuenciaAtaque(){
                 recibirAtaque = true
             }
 
+            
             if(multijugador === false){
-                spanEligeAtaques.innerHTML = "Elige tu ataque:"
                 if(recibirAtaque === true){
                     ataqueAleatorioEnemigo(ordenAtaquesEnemigo)
                 }
             }
             else{
-                spanEligeAtaques.innerHTML = "Selecciona el orden de tus 5 ataques:"
                 if(ataquesMokeponJugador.length === 5){
                     enviarAtaques()
                 }
             }
+           
+
         })
-    })     
+    }) 
+    
+   
 }
 
 function limpiarAtaques() {
-    fetch(`http://192.168.0.13:8080/mokepon/${jugadorId}/ataques`, {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -415,7 +425,7 @@ function limpiarAtaques() {
 }
 
 function enviarAtaques() {
-    fetch(`http://192.168.0.13:8080/mokepon/${jugadorId}/ataques`, {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -429,7 +439,7 @@ function enviarAtaques() {
 }
 
 function obtenerAtaques(){
-   fetch(`http://192.168.0.13:8080/mokepon/${enemigoId}/ataques`)
+   fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
         .then(function (res){
             if (res.ok){
                 res.json()
@@ -579,6 +589,12 @@ function revisarGanador(){
     else if (ataquesMokeponJugador.length === ataquesMokeponEnemigo.length){
         crearMensajeFinal('EMPATE!! 😐')
     }
+
+    if(multijugador){
+        if(vidasJugador<0){
+            vidasJugador = 0
+        }
+    }
 }
 
 function crearMensajes(resultado){
@@ -725,7 +741,7 @@ function pintarCanvas(){
 }
 
 function enviarPosicion(x, y){
-    fetch(`http://192.168.0.13:8080/mokepon/${jugadorId}/posicion`, {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -863,10 +879,12 @@ function revisarColision(enemigo){
 
     if(multijugador){
         enemigoId = enemigo.id
+        
     }
 
     vidasJugadorHtml.innerHTML = vidasJugador
     vidasEnemigoHtml.innerHTML = enemigo.vida
+    
 
     sectionSeleccionarAtaque.style.display = 'flex'
     sectionVerMapa.style.display = 'none'
@@ -943,7 +961,7 @@ function resultadoFinal(){
 }
 
 function eliminarId(){
-    fetch(`http://192.168.0.13:8080/salir/${jugadorId}`)
+    fetch(`http://localhost:8080/salir/${jugadorId}`)
     .then(function (res){
 
         if (res.ok){

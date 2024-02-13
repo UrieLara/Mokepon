@@ -99,7 +99,6 @@ body{
 
 .pagina-ataques{
     display:grid;
-    grid-template-columns: 440px 440px;
     justify-items: center;
     align-items: start;
 }
@@ -241,6 +240,10 @@ p {
         width: 180px; 
         margin-left: 50px;
     }
+
+    .pagina-ataques{
+        grid-template-columns: 440px 440px;
+    }
     
   }
 
@@ -284,13 +287,11 @@ p {
     }
 
     .pagina-ataques{
-        grid-template-columns: none;
         grid-template-rows: 300px 300px;
-        grid-template-columns: 300px;
     }
 
     .ataques-y-mensaje {
-        grid-template-rows: 172px 100px;
+        grid-template-rows: 174px 124px;
     }
 
     #batalla {
