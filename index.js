@@ -7,6 +7,9 @@ const cors = require("cors")
 const app = express()
 const jugadores = []
 
+app.use(express.static('public'))
+app.use(cors())
+app.use(express.json())
 
 class Mokepon {
     constructor(nombre){
@@ -34,11 +37,6 @@ class Jugador {
 
 }
 
-app.use(cors())
-app.use(express.json())
-
-
-
 app.get("/unirse", (req, res) => {
     const id = `${Math.random()}`
     const jugador = new Jugador(id)
@@ -60,7 +58,7 @@ app.get("/salir/:jugadorId", (req, res) => {
         jugadores.splice(jugadorIndex, 1)
     }
     res.setHeader("Access-Control-Allow-Origin", "*")
-    
+
     res.send(jugadorEliminado)
 })
 

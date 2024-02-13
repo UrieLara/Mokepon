@@ -1,7 +1,9 @@
+/* Reemplazar "localhost" por la dirección IP
+inalámbrica Wifi IPv4 del PC */
+
 const sectionReiniciar = document.getElementById('reiniciar')
 const sectionContinuar = document.getElementById('continuar-batalla')
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-//const divNumeroEnemigos = document.getElementById('numero-enemigos')
 const sectionMultijugador = document.getElementById('multijugador')
 const btnMascotaJugador = document.getElementById('btn-mascotas')
 const btnBots = document.getElementById('btn-bots')
@@ -335,8 +337,16 @@ function mostrarAtaques(ataques){
 
 function secuenciaAtaque(){
     clearInterval(intervalo)
-    sectionContinuar.style.display = 'none'
     let recibirAtaque = false
+    sectionContinuar.style.display = 'none'
+    const pEligeAtaques = document.getElementById('elegir-ataques')
+    
+    if(multijugador){
+        pEligeAtaques.innerHTML = "Selecciona el orden de todos tus ataques:"
+    }
+    else{
+        pEligeAtaques.innerHTML ="Elige tu ataque:"
+    }
 
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
@@ -383,6 +393,7 @@ function secuenciaAtaque(){
                 recibirAtaque = true
             }
 
+            
             if(multijugador === false){
                 if(recibirAtaque === true){
                     ataqueAleatorioEnemigo(ordenAtaquesEnemigo)
@@ -393,8 +404,12 @@ function secuenciaAtaque(){
                     enviarAtaques()
                 }
             }
+           
+
         })
-    })     
+    }) 
+    
+   
 }
 
 function limpiarAtaques() {
@@ -573,6 +588,12 @@ function revisarGanador(){
     }
     else if (ataquesMokeponJugador.length === ataquesMokeponEnemigo.length){
         crearMensajeFinal('EMPATE!! 😐')
+    }
+
+    if(multijugador){
+        if(vidasJugador<0){
+            vidasJugador = 0
+        }
     }
 }
 
@@ -858,10 +879,12 @@ function revisarColision(enemigo){
 
     if(multijugador){
         enemigoId = enemigo.id
+        
     }
 
     vidasJugadorHtml.innerHTML = vidasJugador
     vidasEnemigoHtml.innerHTML = enemigo.vida
+    
 
     sectionSeleccionarAtaque.style.display = 'flex'
     sectionVerMapa.style.display = 'none'

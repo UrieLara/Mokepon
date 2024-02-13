@@ -8,8 +8,7 @@ Para hacer referencia a un id se usa un gato (#) */
 body{
     font-family: 'Poppins', sans-serif;
     background-image: url("./assets/fondo.jpeg");
-    background-attachment: fixed;
-    background-size: 1500px 900px;
+    
     color: #FFF0CE;
 }
 
@@ -88,7 +87,6 @@ body{
 
 #elegir-juego{
     display: grid;
-    grid-template-columns: 304px 304px;
     justify-items: center;
     align-items: center;
 }
@@ -101,7 +99,6 @@ body{
 
 .pagina-ataques{
     display:grid;
-    grid-template-columns: 440px 440px;
     justify-items: center;
     align-items: start;
 }
@@ -193,6 +190,7 @@ body{
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: end;
+    user-select: none;
 }
 
 .btn-flechas {
@@ -227,8 +225,34 @@ p {
     align-items: center;
 }
 
-@media (max-width: 360px){
+@media (min-width: 768px) {
 
+    body{
+        background-attachment: fixed;
+        background-size: 1500px 900px;
+    }
+    
+    #elegir-juego{
+        grid-template-columns: 304px 304px;
+    }
+
+    #btn-bots{
+        width: 180px; 
+        margin-left: 50px;
+    }
+
+    .pagina-ataques{
+        grid-template-columns: 440px 440px;
+    }
+    
+  }
+
+@media (max-width: 767px){
+
+    body{
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
 
     .titulo {
         font-family: 'Lilita One', sans-serif;
@@ -248,19 +272,26 @@ p {
         grid-template-columns: 160px 58px
     }
 
+    #elegir-juego{
+        grid-template-rows: 104px 150px;
+    }
+
+    #btn-bots{
+        width: 180px; 
+        margin-left: 25px;
+    }
+
     .boton-de-ataque{
         width: 90px;
         font-size: 20px;
     }
 
     .pagina-ataques{
-        grid-template-columns: none;
         grid-template-rows: 300px 300px;
-        grid-template-columns: 300px;
     }
 
     .ataques-y-mensaje {
-        grid-template-rows: 172px 100px;
+        grid-template-rows: 174px 124px;
     }
 
     #batalla {
