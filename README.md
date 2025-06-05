@@ -1,5 +1,7 @@
-Este proyecto está basado en el curso de programación web básica de Platzi. 
-<br/>Es un juego basado en el "piedra 🪨, papel 📄 o tijera ✂️" con criaturas con poderes. 
+Desarrollo de videojuego para 1 jugador o multijugador en red local para página web y con diseño responsive.
+Basado en el curso de programación web básica de Platzi. 
+
+<br/>Es como "piedra 🪨, papel 📄 o tijera ✂️" pero con criaturas con poderes. 
 
 Hay 6 elementos: 
 - Fuego 🔥
