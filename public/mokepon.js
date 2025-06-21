@@ -915,7 +915,7 @@ function reiniciarJuego() {
 
 
 function unirseAlJuego() {
-    fetch("http://192.168.1.11:8080/unirse")
+    fetch("http://localhost:8080/unirse")
         .then(function (res) {
 
             if (res.ok) {
@@ -929,7 +929,7 @@ function unirseAlJuego() {
 }
 
 function seleccionarMokepon(mascota) {
-    fetch(`http://192.168.1.11:8080/mokepon/${jugador.id}`, {
+    fetch(`http://localhost:8080/mokepon/${jugador.id}`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -942,7 +942,7 @@ function seleccionarMokepon(mascota) {
 }
 
 function limpiarAtaques() {
-    fetch(`http://192.168.1.11:8080/mokepon/${jugador.id}/ataques`, {
+    fetch(`http://localhost:8080/mokepon/${jugador.id}/ataques`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -954,7 +954,7 @@ function limpiarAtaques() {
 }
 
 function enviarAtaques() {
-    fetch(`http://192.168.1.11:8080/mokepon/${jugador.id}/ataques`, {
+    fetch(`http://localhost:8080/mokepon/${jugador.id}/ataques`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -968,7 +968,7 @@ function enviarAtaques() {
 }
 
 function obtenerAtaques() {
-    fetch(`http://192.168.1.11:8080/mokepon/${enemigo.id}/ataques`)
+    fetch(`http://localhost:8080/mokepon/${enemigo.id}/ataques`)
         .then(function (res) {
             if (res.ok) {
                 res.json()
@@ -988,7 +988,7 @@ function obtenerAtaques() {
 }
 
 function enviarPosicion(x, y) {
-    fetch(`http://192.168.1.11:8080/mokepon/${jugador.id}/posicion`, {
+    fetch(`http://localhost:8080/mokepon/${jugador.id}/posicion`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -1030,7 +1030,7 @@ function enviarPosicion(x, y) {
 
 function notificarColision(enemyId) {
     const enemigoId = enemigo.id;
-    fetch(`http://192.168.1.11:8080/colision/${jugador.id}`, {
+    fetch(`http://localhost:8080/colision/${jugador.id}`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -1040,7 +1040,7 @@ function notificarColision(enemyId) {
 }
 
 function eliminarId() {
-    fetch(`http://192.168.1.11:8080/salir/${jugador.id}`)
+    fetch(`http://localhost:8080/salir/${jugador.id}`)
         .then(function (res) {
 
             if (res.ok) {
