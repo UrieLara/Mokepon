@@ -5,10 +5,11 @@ Para hacer referencia a un id se usa un gato (#) */
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@300&display=swap');
 
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
     background-image: url("./assets/fondo.jpeg");
-    
+    background-repeat: round;
+    background-attachment: fixed;
     color: #FFF0CE;
 }
 
@@ -27,23 +28,24 @@ body{
     margin: 10px;
 }
 
-.subtitulo{
- color:black;
- font-size: 22px;
+.subtitulo {
+    color: black;
+    font-size: 22px;
 }
 
 
-.tarjetas{
+.tarjetas {
     display: flex;
-    gap: 10px; /*espaciado*/
+    gap: 10px;
+    /*espaciado*/
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
 }
 
-.tarjeta-de-mokepon{
+.tarjeta-de-mokepon {
     width: 200px;
-    height:100px;
+    height: 100px;
     background: #088395;
     padding: 10px;
     box-sizing: border-box;
@@ -55,15 +57,15 @@ body{
     justify-content: space-evenly;
 }
 
-.tarjeta-de-mokepon img{
+.tarjeta-de-mokepon img {
     width: 80px;
 }
 
-.sombreado{
+.sombreado {
     background-color: #00003970;
 }
 
-.btn-transparente{
+.btn-transparente {
     height: 40px;
     border-radius: 20px;
     background-color: #0a3eeda6;
@@ -72,55 +74,56 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.doble-columna{
+.doble-columna {
     display: grid;
     grid-template-columns: 194px 74px;
     justify-items: center;
     align-items: center;
 }
 
-#multijugador{
+#multijugador {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#elegir-juego{
+#elegir-juego {
     display: grid;
     justify-items: center;
     align-items: center;
 }
 
-.victorias-y-derrotas{
+.victorias-y-derrotas {
     display: grid;
     grid-template-columns: 140px 140px;
     justify-items: center;
 }
 
-.pagina-ataques{
-    display:grid;
+.pagina-ataques {
+    display: grid;
     justify-items: center;
     align-items: start;
 }
 
-.ataques-y-mensaje{
+.ataques-y-mensaje {
     display: grid;
     grid-template-rows: 210px 124px;
     align-items: center;
     justify-items: center;
 }
 
-#ataques-jugador, #ataques-enemigo{
+#ataques-jugador,
+#ataques-enemigo {
     background-color: #292e4585;
     font-size: 20px;
 }
 
-#seleccionar-ataque{
+#seleccionar-ataque {
     flex-direction: column;
     align-items: center;
 }
 
-.boton-de-ataque{
+.boton-de-ataque {
     padding: 10px;
     margin: 2px;
     box-sizing: border-box;
@@ -130,7 +133,7 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.mensajes{
+.mensajes {
     display: flex;
     width: 280px;
     background-color: #ffffff;
@@ -143,13 +146,13 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.btn-msjs{
+.btn-msjs {
     border: none;
     background-color: white;
     color: #0174BE;
 }
 
-#batalla{
+#batalla {
     display: grid;
     grid-template-columns: 184px 184px;
     grid-template-rows: 84px 120px 88px;
@@ -157,17 +160,19 @@ body{
     justify-items: center;
 }
 
-.vida{
+.vida {
     width: 24px;
     height: 20px;
 }
 
-#img-mascota-jugador, #img-mascota-enemigo {
+#img-mascota-jugador,
+#img-mascota-enemigo {
     width: 80px;
     height: 80px;
 }
 
-#vida-jugador, #vida-enemigo{
+#vida-jugador,
+#vida-enemigo {
     font-size: 32px;
     justify-content: center;
     color: #FFC436;
@@ -197,16 +202,16 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    font-size:30px;
+    font-size: 30px;
 }
 
-#reiniciar{
-    display:flex;
+#reiniciar {
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#img-final{
+#img-final {
     width: 200px;
     height: 200px;
 }
@@ -215,7 +220,7 @@ input[type="radio"] {
     display: none;
 }
 
-input:checked + label{
+input:checked+label {
     background-color: #FFC436;
 }
 
@@ -227,29 +232,29 @@ p {
 
 @media (min-width: 768px) {
 
-    body{
+    /*  body {
         background-attachment: fixed;
-        background-size: 1500px 900px;
-    }
-    
-    #elegir-juego{
+
+    }*/
+
+    #elegir-juego {
         grid-template-columns: 304px 304px;
     }
 
-    #btn-bots{
-        width: 180px; 
+    #btn-bots {
+        width: 180px;
         margin-left: 50px;
     }
 
-    .pagina-ataques{
+    .pagina-ataques {
         grid-template-columns: 440px 440px;
     }
-    
-  }
 
-@media (max-width: 767px){
+}
 
-    body{
+@media (max-width: 767px) {
+
+    body {
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
@@ -258,35 +263,35 @@ p {
         font-family: 'Lilita One', sans-serif;
         font-size: 30px;
     }
-    
-    .subtitulo{
-     color: black;
-     font-size: 18px;
+
+    .subtitulo {
+        color: black;
+        font-size: 18px;
     }
 
-    .tarjetas{
+    .tarjetas {
         flex-direction: column;
     }
 
-    .doble-columna{
+    .doble-columna {
         grid-template-columns: 160px 58px
     }
 
-    #elegir-juego{
+    #elegir-juego {
         grid-template-rows: 104px 150px;
     }
 
-    #btn-bots{
-        width: 180px; 
+    #btn-bots {
+        width: 180px;
         margin-left: 25px;
     }
 
-    .boton-de-ataque{
+    .boton-de-ataque {
         width: 90px;
         font-size: 20px;
     }
 
-    .pagina-ataques{
+    .pagina-ataques {
         grid-template-rows: 300px 300px;
     }
 
@@ -300,15 +305,14 @@ p {
         margin: 10px;
     }
 
-    .mensajes{
+    .mensajes {
         margin: 60px 0px 30px 0px;
         width: 200px;
     }
 
-    body{
+    body {
         font-size: 14px;
         background-image: url("./assets/fondo.jpeg");
         background-size: cover;
     }
 }
-
